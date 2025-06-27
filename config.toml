@@ -1,6 +1,7 @@
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 publishDir = "docs"
+baseURL = "https://captan2003.github.io/CapLeHuuTan_WorkShop/"
 
 # For search functionality
 [outputs]
