@@ -1,46 +1,70 @@
 ---
-title : "Setting up an AWS account"
-date: "2025-06-27" 
-weight : 1 
-chapter : false
+title: "Home"
+date: "2025-07-17"
+weight: 1
+chapter: false
 ---
 
-# Creating your first AWS account
+# Deploying a Decoupled Web Application on AWS  
+## Frontend + Backend Architecture with Best Practices
 
 #### Overview
-In this first lab, you will be creating your new **AWS** account and use Multi-factor Authentication (**MFA**) to improve your account security. Next, you will create an **Administrator Group** and **Admin User** to manage access to resources in your account instead of using the root user. \
-Finally, we will step through account authentication with **AWS Support** in the event you experience authentication problems.
 
-#### AWS Account
-**An AWS account** is the basic container for all the AWS resources you can create as an AWS customer. By default, each AWS account will have a _root user_. The _root user_ has full access within your AWS account, and root user permissions cannot be limited. When you first create your AWS account, you will be assessing it as the _root user_.
+This workshop guides you through deploying a modern decoupled web application on AWS, following best practices in cloud architecture.  
+The system includes a frontend (**React SPA hosted on S3 and delivered via CloudFront**) and a containerized backend (**Spring Boot running on ECS Fargate behind an ALB**).  
+**Amazon API Gateway** handles request routing, and the backend connects to a managed **MySQL database on Amazon RDS**.  
+We also integrate CI/CD pipelines and monitoring with CloudWatch.
 
-![Create Account](/images/1/0001.png?featherlight=false&width=90pc)
+#### Technology Used
 
-{{% notice note%}}
-As a best practice, do not use the AWS account _root user_ for any task where it's not required. Instead, create a new IAM user for each person that requires administrator access. Thereafter, the users in the administrators user group should set up the user groups, users, and so on, for the AWS account. All future interaction should be through the AWS account's users and their own keys instead of the root user. However, to perform some account and service management tasks, you must log in using the root user credentials.
-{{% /notice%}}
+This project includes both frontend and backend components:
 
-#### Multi-Factor Authentication (MFA)
-**MFA** adds extra security because it requires users to provide unique authentication from an AWS supported MFA mechanism in addition to their regular sign-in credentials when they access AWS websites or services.
+- **Frontend**: React SPA  
+  - Hosted on **Amazon S3**  
+  - Delivered via **Amazon CloudFront**
 
-#### IAM User Group 
-An **IAM user group** is a collection of IAM users. User groups let you specify permissions for multiple users, which can make it easier to manage the permissions for those users. Any user in that user group automatically has the permissions that are assigned to the user group. 
+- **Backend**: Java Spring Boot API  
+  - Containerized with **Docker**  
+  - Deployed on **ECS Fargate** behind an **Application Load Balancer**
 
-#### IAM User
-An **IAM user** is an entity that you create in AWS to represent the person or application that uses it to interact with AWS. A user in AWS consists of a name and credentials. \
-Please note that an IAM user with administrator permissions is not the same thing as the AWS account root user.
+- **Database**: Amazon RDS (MySQL)
 
+- **Infrastructure Tools**:  
+  - AWS CLI, IAM, VPC, Route53, Certificate Manager  
+  - GitHub Actions for automated deployment  
+  - CloudWatch for logging and alerting
 
-#### AWS Support
-AWS Basic Support offers all AWS customers access to our Resource Center, Service Health Dashboard, Product FAQs, Discussion Forums, and Support for Health Checks – at no additional charge. Customers who desire a deeper level of support can subscribe to AWS Support at the Developer, Business, or Enterprise level.
+---
 
-Customers who choose AWS Support gain one-on-one, fast-response support from AWS engineers. The service helps customers use AWS's products and features. With pay-by-the-month pricing and unlimited support cases, customers are freed from long-term commitments. Customers with operational issues or technical questions can contact a team of support engineers and receive predictable response times and personalized support.
+#### Modules
 
+1. **Deploy Backend with ECS Fargate**
+   - Create ECR repo and push backend image
+   - Create ECS Task Definition and Fargate Service
+   - Set up Application Load Balancer
+   - Configure RDS or use MySQL container
 
-#### Main Content
+2. **Deploy Frontend with S3 and CloudFront**
+   - Build the React application
+   - Upload to S3 bucket
+   - Create CloudFront distribution
+   - Configure cache settings and CORS policy
 
-1. [Creating a new AWS Account](1-create-new-aws-account/)
-2. [Setting up MFA for the AWS Account root user](2-MFA-Setup-For-AWS-User-(root))
-3. [Creating an Administrator Accounts and Groups](3-create-admin-user-and-group/)
-4. [Getting support for Account Authentication](4-verify-new-account/)
-<!-- need to remove parenthesis for path in Hugo 0.88.1 for Windows-->
+3. **Configure API Gateway and Custom Domain**
+   - Create HTTP API in API Gateway
+   - Route traffic to backend via ALB
+   - Set up SSL with ACM and Route53
+
+4. **CI/CD and Monitoring**
+   - Configure GitHub Actions for frontend/backend
+   - Automate build and deployment steps
+   - Enable CloudWatch logging and alarms
+
+---
+
+#### Content
+
+1. [1. Deploy Backend with ECS Fargate](1-deploy-backend-ecs-fargate/)
+2. [2. Deploy Frontend with S3 and CloudFront](2-deploy-frontend-s3-cloudfront/)
+3. [3. Configure API Gateway and Domain](3-setup-api-gateway-custom-domain/)
+4. [4. CI/CD and Monitoring](4-ci-cd-and-monitoring/)
