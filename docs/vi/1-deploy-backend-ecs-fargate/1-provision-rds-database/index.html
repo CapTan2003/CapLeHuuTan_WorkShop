@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="vi" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="description" content="">
+<meta name="author" content="journeyoftheaverageguy@gmail.com">
+
+    <link rel="icon" href="/CapLeHuuTan_WorkShop/images/favicon.png" type="image/png">
+
+    <title>Tạo Cơ Sở Dữ Liệu RDS (MySQL) :: Tạo mới tài khoản AWS</title>
+
+    
+    <link href="/CapLeHuuTan_WorkShop/css/nucleus.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/fontawesome-all.min.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/hybrid.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/featherlight.min.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/perfect-scrollbar.min.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/auto-complete.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/atom-one-dark-reasonable.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/theme.css?1754387794" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/hugo-theme.css?1754387794" rel="stylesheet">
+    
+    <link href="/CapLeHuuTan_WorkShop/css/theme-workshop.css?1754387794" rel="stylesheet">
+    
+    
+
+    <script src="/CapLeHuuTan_WorkShop/js/jquery-3.3.1.min.js?1754387794"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/lunr.min.js?1754387794"></script>
+<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/auto-complete.js?1754387794"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/captan2003.github.io\/CapLeHuuTan_WorkShop\/\/vi";
+    
+</script>
+<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/search.js?1754387794"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/" title="Triển khai Backend với ECS Fargate" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/">
+           <b> 1. </b> Triển khai Backend với ECS Fargate
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/" title="Tạo Cơ Sở Dữ Liệu RDS (MySQL)" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/">
+           <b> 1.1 </b> Tạo Cơ Sở Dữ Liệu RDS (MySQL)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/" title="Tạo repository ECR và đẩy Docker image" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/">
+           <b> 1.2 </b> Tạo repository ECR và đẩy Docker image
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-task-definition/" title="Tạo Task Definition cho ứng dụng Backend" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-task-definition/">
+           <b> 1.3 </b> Tạo Task Definition cho ứng dụng Backend
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-fargate-service/" title="Tạo ECS Fargate Service và cấu hình Auto Scaling" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-fargate-service/">
+           <b> 1.4 </b> Tạo ECS Fargate Service và cấu hình Auto Scaling
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/" title="Tạo Application Load Balancer để định tuyến" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/">
+           <b> 1.5 </b> Tạo Application Load Balancer để định tuyến
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/" title="Cấu hình VPC, Subnet và Security Group cho ECS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/">
+           <b> 1.7 </b> Cấu hình VPC, Subnet và Security Group cho ECS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/" title="" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/">
+          
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/" title="Triển khai Frontend với S3 và CloudFront" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/">
+           <b> 2. </b> Triển khai Frontend với S3 và CloudFront
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/" title="Build ứng dụng frontend ở chế độ production" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/">
+           <b> 2.1 </b> Build ứng dụng frontend ở chế độ production
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/" title="Tạo và cấu hình S3 Bucket để hosting" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/">
+           <b> 2.2 </b> Tạo và cấu hình S3 Bucket để hosting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/" title="Tạo CloudFront Distribution" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/">
+           <b> 2.3 </b> Tạo CloudFront Distribution
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/" title="Cấu hình CORS, Cache-Control và xử lý lỗi" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/">
+           <b> 2.4 </b> Cấu hình CORS, Cache-Control và xử lý lỗi
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/" title="Tải các file tĩnh lên S3" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/">
+           <b> 2.5 </b> Tải các file tĩnh lên S3
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/" title="Cấu hình API Gateway và tên miền tuỳ chỉnh" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/">
+           <b> 3. </b> Cấu hình API Gateway và tên miền tuỳ chỉnh
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/" title="Tạo HTTP API trong API Gateway" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/">
+           <b> 3.1 </b> Tạo HTTP API trong API Gateway
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/" title="Tích hợp API Gateway với Application Load Balancer (ALB)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/">
+           <b> 3.2 </b> Tích hợp API Gateway với Application Load Balancer (ALB)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/" title="Cài đặt SSL bằng AWS Certificate Manager (ACM)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/">
+           <b> 3.3 </b> Cài đặt SSL bằng AWS Certificate Manager (ACM)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/" title="Cấu hình bản ghi Route 53 cho tên miền tùy chỉnh" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/">
+           <b> 3.4 </b> Cấu hình bản ghi Route 53 cho tên miền tùy chỉnh
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/" title="CI/CD và Giám sát hệ thống" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/">
+           <b> 4. </b> CI/CD và Giám sát hệ thống
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/" title="Thiết lập GitHub Actions cho Frontend và Backend" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/">
+           <b> 4.1 </b> Thiết lập GitHub Actions cho Frontend và Backend
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/" title="" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/">
+          
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/" title="" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/">
+          
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/" title="" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/">
+          
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+        <li>
+          <a class="padding">
+            <i class="fas fa-language fa-fw"></i>
+          <div class="select-style">
+            <select id="select-language" onchange="location = this.value;">
+          
+          
+          
+              
+              
+                  
+                    
+                    
+                      <option id="en" value="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/1-provision-rds-database/">English</option>
+                    
+                  
+              
+                  
+              
+          
+              
+              
+                  
+              
+                  
+                    
+                    
+                      <option id="vi" value="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/" selected>Tiếng Việt</option>
+                    
+                  
+              
+          
+        </select>
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="255px" height="255px" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255;" xml:space="preserve">
+          <g>
+            <g id="arrow-drop-down">
+              <polygon points="0,63.75 127.5,191.25 255,63.75 		" />
+            </g>
+          </g>
+        </svg>
+        </div>
+        </a>
+        </li>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>
+    
+     <b> Workshop</b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830891&style=0038&nbdigits=9&type=page&initCount=0" title="Migrate" Alt="web counter"   border="0" /></a>  <br>
+     <b> <a href="https://cloudjourney.awsstudygroup.com/">Cloud Journey</a></b> <br>
+    <img src="https://hitwebcounter.com/counter/counter.php?page=7830807&style=0038&nbdigits=9&type=page&initCount=0" title="Total CLoud Journey" Alt="web counter"   border="0"   />
+     
+</left>
+<left>
+    <br>
+    <br>
+        <b> Last Updated </b> <br>
+        <i><font color=orange>26-11-2023</font></i>
+    </left>
+    <left>
+        <br>
+        <br>
+            <b> Team </b> <br>
+           
+            <i>
+                <a href="https://www.linkedin.com/in/jotaguy"  style="color:orange">Gia Hưng</a>
+        </i>
+        </left>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/CapLeHuuTan_WorkShop/vi/'>Trang chủ</a> > <a href='/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/'>Triển khai Backend với ECS Fargate</a> > Tạo Cơ Sở Dữ Liệu RDS (MySQL)
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Tạo Cơ Sở Dữ Liệu RDS (MySQL)
+            </h1>
+          
+
+        
+
+
+
+	<ul>
+<li>
+<p><strong>Tạo CSDL RDS bằng AWS Console</strong></p>
+<ul>
+<li>Truy cập <a href="https://console.aws.amazon.com/rds/home">bảng điều khiển Amazon RDS</a>.</li>
+<li>Chọn <strong>Databases</strong> → nhấn <strong>Create database</strong>.</li>
+<li>Ở phần <strong>Database creation method</strong>, chọn <strong>Standard Create</strong>.</li>
+</ul>
+<p><img src="/images/deploy_backend_rds/create_db_step1.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Chọn engine và phiên bản</strong></p>
+<ul>
+<li>Engine type: <strong>MySQL</strong></li>
+<li>Version: chọn phiên bản ổn định, ví dụ: <strong>MySQL 8.0.x</strong></li>
+</ul>
+<p><img src="/images/deploy_backend_rds/select_engine.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Thiết lập thông tin đăng nhập</strong></p>
+<ul>
+<li>DB instance identifier: <code>study-english</code></li>
+<li>Master username: <code>admin</code></li>
+<li>Master password: đặt mật khẩu bảo mật và ghi nhớ</li>
+</ul>
+<p><img src="/images/deploy_backend_rds/set_credentials.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Cấu hình phần cứng và dung lượng</strong></p>
+<ul>
+<li>DB instance class: chọn loại tiết kiệm như <code>db.t3.micro</code> (Free Tier)</li>
+<li>Storage: giữ mặc định 20 GiB (có thể bật auto-scaling nếu cần)</li>
+</ul>
+<p><img src="/images/deploy_backend_rds/instance_storage.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Cấu hình kết nối mạng</strong></p>
+<ul>
+<li>Virtual Private Cloud (VPC): chọn VPC mà ECS sẽ sử dụng</li>
+<li>Subnet group: giữ mặc định hoặc chọn nhóm phù hợp</li>
+<li>Public access: <strong>Yes</strong> (nếu cần test từ máy local)<br>
+👉 Sau khi triển khai xong nên đổi thành <strong>No</strong> để bảo mật</li>
+<li>Security Group: mở cổng <strong>TCP 3306</strong></li>
+</ul>
+<p><img src="/images/deploy_backend_rds/network_settings.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Cấu hình bổ sung</strong></p>
+<ul>
+<li>Initial database name: <code>study-english</code></li>
+<li>Backup và Monitoring: có thể tắt nếu chỉ dùng để phát triển/test</li>
+<li>Nhấn <strong>Create database</strong> để tạo</li>
+</ul>
+<p><img src="/images/deploy_backend_rds/final_create_db.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Chờ RDS được tạo xong</strong></p>
+<ul>
+<li>Trạng thái sẽ là <code>Creating...</code> trong vài phút.</li>
+<li>Khi chuyển sang <code>Available</code>, nhấn vào tên DB để xem chi tiết.</li>
+</ul>
+<p><img src="/images/deploy_backend_rds/db_available.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>Sao chép Endpoint để cấu hình</strong></p>
+<ul>
+<li>Trong tab <strong>Connectivity &amp; security</strong>, tìm trường <strong>Endpoint</strong></li>
+<li>Ví dụ: <code>study-english.c9d2gkxxxxx.ap-northeast-1.rds.amazonaws.com</code></li>
+</ul>
+<p><img src="/images/deploy_backend_rds/rds_endpoint.png" alt="image.png"></p>
+</li>
+<li>
+<p><strong>(Tuỳ chọn) Kiểm tra kết nối từ máy local</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mysql -h study-english.&lt;region&gt;.rds.amazonaws.com -u admin -p
+</span></span></code></pre></div><ul>
+<li>Đảm bảo:
+<ul>
+<li>RDS cho phép public access (nếu test)</li>
+<li>Cổng 3306 đã được mở trong Security Group</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/" title="Triển khai Backend với ECS Fargate"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/" title="Tạo repository ECR và đẩy Docker image" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/CapLeHuuTan_WorkShop/js/clipboard.min.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.min.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.jquery.min.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/jquery.sticky.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/featherlight.min.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/highlight.pack.js?1754387794"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/CapLeHuuTan_WorkShop/js/modernizr.custom-3.6.0.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/learn.js?1754387794"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/hugo-learn.js?1754387794"></script>
+
+    <link href="/CapLeHuuTan_WorkShop/mermaid/mermaid.css?1754387794" rel="stylesheet" />
+    <script src="/CapLeHuuTan_WorkShop/mermaid/mermaid.js?1754387794"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-158079754-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

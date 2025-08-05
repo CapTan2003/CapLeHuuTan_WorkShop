@@ -1,181 +1,188 @@
 [
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/",
 	"title": "Build frontend application for production",
 	"tags": [],
 	"description": "",
-	"content": " Navigate to the frontend project directory (if applicable)\ncd frontend Install required dependencies\nIf not installed yet, run: npm install Build the application for production\nRun the following command to build your frontend (React, Vue, etc.): npm run build The output folder is usually build/ (React) or dist/ (Vue, Vite)\nThe result will be a set of optimized HTML, JS, and CSS files ready to upload to S3\nCheck the build output folder\nVerify that it contains files like index.html, main.js, style.css, etc.: ls build or\nls dist If the files are present, you\u0026rsquo;re ready to move to the next step: upload to S3 and serve via CloudFront "
+	"content": " Navigate to the frontend project directory (if applicable)\ncd frontend Install required dependencies\nIf not installed yet, run: npm install Build the application for production\nRun the following command to build your frontend (React, Vue, Vite, etc.): npm run build The output folder is usually build/ (React) or dist/ (Vue, Vite)\nThe result will be a set of optimized HTML, JS, and CSS files ready to upload to S3\nCheck the build output folder\nVerify that it contains files like index.html, main.js, style.css, etc.: ls build or\nls dist Preview the production build locally (optional)\nInstall serve globally if not already: npm install -g serve Run the production build locally (React example): serve -s build For Vue/Vite, replace build with dist: serve -s dist Then open your browser and go to: http://localhost:3000 (Optional) On Windows, you can auto-open the browser with: start http://localhost:3000 ✅ If everything looks correct, you\u0026rsquo;re ready to move to the next step: upload to S3 and serve via CloudFront.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/",
-	"title": "Create ECR Repository and Push Docker Image",
-	"tags": [],
-	"description": "",
-	"content": " Create ECR repository using AWS Console\nGo to the ECR dashboard. Click Create repository. Choose Private, set repository name (e.g. springboot-backend) and leave other settings as default. Click Create to finish. Get push commands from AWS Console\nAfter creating the repository, click on its name. At the top right, click View push commands. AWS will show CLI commands required to: Authenticate Docker to ECR Build the Docker image Tag the image Push to ECR Login to ECR using Docker CLI\nCopy and run the login command from AWS Console. The command looks like this: aws ecr get-login-password \\ --region ap-northeast-1 \\ | docker login \\ --username AWS \\ --password-stdin \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com Build Docker image from local project\nIn the root of your Spring Boot project, run: docker build -t springboot-backend . Tag the Docker image with ECR repository URI\ndocker tag springboot-backend:latest \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Push Docker image to ECR\ndocker push \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Verify image pushed to ECR\nGo back to the repository on the AWS Console. Click on the Images tab. You should see the image with the correct tag and push time. "
-},
-{
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/1-create-http-api/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/1-create-http-api/",
 	"title": "Create HTTP API in API Gateway",
 	"tags": [],
 	"description": "",
 	"content": " Open API Gateway Console\nGo to the Amazon API Gateway Click Create API → Choose HTTP API Click Build Configure basic settings\nAPI name: web-app-api Description: Optional Select Regional endpoint type Configure routes\nClick Add integration Integration type: ALB Choose your existing ALB + listener Path: /api/* → method: ANY Deploy the API\nStage name: prod Click Create Test your HTTP API\nCopy the invoke URL Test with curl or your frontend curl https://\u0026lt;your-api-id\u0026gt;.execute-api.\u0026lt;region\u0026gt;.amazonaws.com/prod/api/health "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/",
-	"title": "Deploy Backend with ECS Fargate",
-	"tags": [],
-	"description": "",
-	"content": "To deploy the backend with ECS Fargate, follow the step-by-step guides below:\nCreate ECR repository and push Docker image Create ECS Task Definition for Backend Application Create ECS Fargate Service and enable Auto Scaling Set up Application Load Balancer for routing Connect to Amazon RDS or MySQL container Configure VPC, Subnets, and Security Groups "
-},
-{
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/",
 	"title": "Home",
 	"tags": [],
 	"description": "",
 	"content": "Deploying a Decoupled Web Application on AWS Frontend + Backend Architecture with Best Practices Overview This workshop guides you through deploying a modern decoupled web application on AWS, following best practices in cloud architecture.\nThe system includes a frontend (React SPA hosted on S3 and delivered via CloudFront) and a containerized backend (Spring Boot running on ECS Fargate behind an ALB).\nAmazon API Gateway handles request routing, and the backend connects to a managed MySQL database on Amazon RDS.\nWe also integrate CI/CD pipelines and monitoring with CloudWatch.\nTechnology Used This project includes both frontend and backend components:\nFrontend: React SPA\nHosted on Amazon S3 Delivered via Amazon CloudFront Backend: Java Spring Boot API\nContainerized with Docker Deployed on ECS Fargate behind an Application Load Balancer Database: Amazon RDS (MySQL)\nInfrastructure Tools:\nAWS CLI, IAM, VPC, Route53, Certificate Manager GitHub Actions for automated deployment CloudWatch for logging and alerting Modules Deploy Backend with ECS Fargate\nCreate ECR repo and push backend image Create ECS Task Definition and Fargate Service Set up Application Load Balancer Configure RDS or use MySQL container Deploy Frontend with S3 and CloudFront\nBuild the React application Upload to S3 bucket Create CloudFront distribution Configure cache settings and CORS policy Configure API Gateway and Custom Domain\nCreate HTTP API in API Gateway Route traffic to backend via ALB Set up SSL with ACM and Route53 CI/CD and Monitoring\nConfigure GitHub Actions for frontend/backend Automate build and deployment steps Enable CloudWatch logging and alarms Content 1. Deploy Backend with ECS Fargate 2. Deploy Frontend with S3 and CloudFront 3. Configure API Gateway and Domain 4. CI/CD and Monitoring "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/1-setup-github-actions/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/1-provision-rds-database/",
+	"title": "Provision RDS Database (MySQL)",
+	"tags": [],
+	"description": "",
+	"content": " Create RDS database using AWS Console\nGo to the Amazon RDS dashboard. Click Databases → then click Create database. Under Database creation method, select Standard Create. Configure engine and version\nEngine type: MySQL Version: Choose a stable version like MySQL 8.0.x Set database credentials\nDB instance identifier: study-english Master username: admin Master password: set a secure password and note it down Configure instance type and storage\nDB instance class: choose a cost-effective option like db.t3.micro (Free Tier) Storage: keep default 20 GiB (you may enable auto-scaling) Networking and connectivity\nVPC: choose the same VPC used for your ECS service Subnet group: use default or appropriate one Public access: Yes (for testing from local)\n👉 For production, switch to No later VPC security group: allow TCP port 3306 Additional configuration\nInitial database name: study-english Backup, Monitoring: can be disabled for development/test environments Click Create database to start provisioning Wait for the database to become available\nStatus will be Creating... for a few minutes. Once it becomes Available, click the DB name to view details. Copy the RDS endpoint\nUnder Connectivity \u0026amp; security, find the Endpoint field Example: study-english.c9d2gkxxxxx.ap-northeast-1.rds.amazonaws.com (Optional) Test RDS connection from local\nmysql -h study-english.\u0026lt;region\u0026gt;.rds.amazonaws.com -u admin -p Make sure: RDS public access is enabled (for testing) Port 3306 is open in the security group "
+},
+{
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/1-setup-github-actions/",
 	"title": "Setup GitHub Actions for Frontend and Backend",
 	"tags": [],
 	"description": "",
 	"content": " Create GitHub Actions workflow for Frontend (S3)\nGo to your frontend repository. Create a new file at .github/workflows/deploy-frontend.yml. name: Deploy Frontend to S3 on: push: branches: [main] jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Setup Node.js uses: actions/setup-node@v3 with: node-version: 18 - name: Install dependencies \u0026amp; build run: | npm ci npm run build - name: Sync to S3 uses: jakejarvis/s3-sync-action@master with: args: --acl public-read --delete env: AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }} AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_REGION: \u0026#34;ap-northeast-1\u0026#34; SOURCE_DIR: \u0026#34;dist\u0026#34; Create GitHub Actions workflow for Backend (ECS Fargate)\nIn your backend repository, create .github/workflows/deploy-backend.yml. name: Deploy Backend to ECS on: push: branches: [main] jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Setup Docker uses: docker/setup-buildx-action@v2 - name: Login to Amazon ECR uses: aws-actions/amazon-ecr-login@v1 - name: Build and Push Docker image run: | docker build -t ${{ secrets.ECR_REPO }} . docker tag ${{ secrets.ECR_REPO }}:latest ${{ secrets.ECR_URI }} docker push ${{ secrets.ECR_URI }} - name: Deploy to ECS uses: aws-actions/amazon-ecs-deploy-task-definition@v1 with: task-definition: ecs-task-def.json service: your-ecs-service cluster: your-ecs-cluster wait-for-service-stability: true Make sure to add necessary GitHub Secrets\nAWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_S3_BUCKET ECR_REPO ECR_URI Any other variables used in the workflows "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/",
 	"title": "Create and Configure S3 Bucket for Hosting",
 	"tags": [],
 	"description": "",
 	"content": " Go to the Amazon S3 Console\nCreate a new bucket for your frontend\nClick Create bucket Set a globally unique bucket name (e.g., my-frontend-app) Choose the correct AWS Region Uncheck Block all public access (important for hosting) Acknowledge the warning checkbox Click Create bucket Enable static website hosting\nGo to the bucket → Click the Properties tab Scroll to Static website hosting Click Edit Enable static website hosting Set Index document: index.html Set Error document: index.html (for SPA routing) Save changes Make the bucket public\nGo to the Permissions tab Scroll to Bucket policy Click Edit Paste the following policy (replace my-frontend-app with your bucket name): { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Sid\u0026#34;: \u0026#34;PublicReadGetObject\u0026#34;, \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: \u0026#34;*\u0026#34;, \u0026#34;Action\u0026#34;: \u0026#34;s3:GetObject\u0026#34;, \u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::my-frontend-app/*\u0026#34; } ] } Save the policy Confirm public access\nGo back to Objects tab You should now be able to access files from the public endpoint like: http://my-frontend-app.s3-website-ap-northeast-1.amazonaws.com Let me know when you\u0026rsquo;re ready for step 3: Set up CloudFront Distribution.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/2-create-task-definition/",
-	"title": "Create ECS Task Definition for Backend Application",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/",
+	"title": "Create ECR Repository and Push Docker Image",
 	"tags": [],
 	"description": "",
-	"content": " Open Amazon ECS Console\nNavigate to the ECS Console. On the left panel, click Task Definitions, then select Create new Task Definition. Select launch type\nOn the first screen, choose FARGATE as the launch type. Click Next step. Define task settings\nTask Definition Name: enter a name (e.g., springboot-backend-task). Task Role: choose ecsTaskExecutionRole. If it doesn’t exist, click \u0026ldquo;Create new role\u0026rdquo; and allow default permissions. Operating system family: keep as Linux. CPU: choose 512 (.5 vCPU) or 1024 (1 vCPU) depending on your needs. Memory: choose 1024 (1 GB) or higher. Network mode: leave as awsvpc. Add container definition\nScroll to Container definitions and click Add container. Fill in the following details: Container name: springboot-container Image URI: your ECR image URI\n(e.g., \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest) Port mappings: set Container port to 8080 Configure logging\nIn the container section, enable Log configuration: Select awslogs as the log driver Log group: /ecs/springboot-backend (or create one in CloudWatch) Region: ap-northeast-1 Stream prefix: springboot Review and create\nClick Next step to review your configuration. Click Create to finish creating the Task Definition. Confirmation\nOnce created, your Task Definition will appear in the ECS Console. You can now use it to create a Fargate Service in the next step. "
+	"content": " Create ECR repository using AWS Console\nGo to the ECR dashboard. Click Create repository. Choose Private, set repository name (e.g. springboot-backend) and leave other settings as default. Click Create to finish. Get push commands from AWS Console\nAfter creating the repository, click on its name. At the top right, click View push commands. AWS will show CLI commands required to: Authenticate Docker to ECR Build the Docker image Tag the image Push to ECR Login to ECR using Docker CLI\nCopy and run the login command from AWS Console. The command looks like this: aws ecr get-login-password \\ --region ap-northeast-1 \\ | docker login \\ --username AWS \\ --password-stdin \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com Build Docker image from local project\nIn the root of your Spring Boot project, run: docker build -t springboot-backend . Tag the Docker image with ECR repository URI\ndocker tag springboot-backend:latest \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Push Docker image to ECR\ndocker push \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Verify image pushed to ECR\nGo back to the repository on the AWS Console. Click on the Images tab. You should see the image with the correct tag and push time. "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/",
 	"title": "Deploy Frontend with S3 and CloudFront",
 	"tags": [],
 	"description": "",
 	"content": "To deploy the frontend (e.g., React, Vue, Angular), follow these steps:\nBuild Frontend App for Production Create and Configure S3 Bucket for Hosting Create CloudFront Distribution Configure CORS, Cache-Control and Error Handling Upload Static Files to S3 "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/",
 	"title": "Integrate API Gateway with Application Load Balancer (ALB)",
 	"tags": [],
 	"description": "",
 	"content": " Go to your HTTP API in API Gateway\nOpen Amazon API Gateway Console Choose the HTTP API you created (e.g. web-app-api) Navigate to the Integrations tab Add new integration for ALB\nClick Manage integrations → Add integration Integration target: Application Load Balancer (ALB) Choose your ALB ARN and listener Click Add Add route to forward traffic\nGo to Routes tab Click Create route Enter path: /api/{proxy+} Method: ANY Select the ALB integration created Click Create Deploy changes\nGo to Deployments Choose your stage (e.g. prod) Click Deploy Test routing\ncurl https://\u0026lt;your-api-id\u0026gt;.execute-api.\u0026lt;region\u0026gt;.amazonaws.com/prod/api/health "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/",
 	"title": "Configure API Gateway and Custom Domain",
 	"tags": [],
 	"description": "",
 	"content": "To configure API Gateway and custom domain, follow these steps:\nCreate HTTP API in API Gateway Integrate API Gateway with Application Load Balancer (ALB) Set up SSL using AWS Certificate Manager (ACM) Map custom domain using Route53 "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/",
 	"title": "Create CloudFront Distribution",
 	"tags": [],
 	"description": "",
 	"content": " Go to the Amazon CloudFront Console\nClick “Create Distribution” to begin\nIn Origin domain, select your S3 static website endpoint (ending with .s3-website-\u0026lt;region\u0026gt;.amazonaws.com) Leave Origin path empty For Origin name, enter something like frontend-s3-origin Set Viewer protocol policy to Redirect HTTP to HTTPS Configure cache behavior settings\nAllowed HTTP methods: GET, HEAD Cache policy: choose CachingOptimized Enable Compress objects automatically Set Viewer protocol policy to Redirect HTTP to HTTPS Specify default root object\nScroll to Default root object Enter index.html to load the homepage by default Review and deploy\nClick Create distribution Wait a few minutes for status to change from In Progress to Deployed Once deployed, copy the Distribution domain name (e.g., d123abc.cloudfront.net) — you’ll use this in custom domain or testing "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/3-create-fargate-service/",
-	"title": "Create ECS Fargate Service and enable Auto Scaling",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/3-create-task-definition/",
+	"title": "Create ECS Task Definition for Backend Application",
 	"tags": [],
 	"description": "",
-	"content": " Open ECS Cluster and select your target cluster\nGo to the Amazon ECS Console In the sidebar, click Clusters Choose the cluster you created (e.g., production-cluster) Create a new Service from Task Definition\nInside your cluster, go to the Services tab Click Create → select FARGATE as launch type Choose your Task Definition (e.g., springboot-backend-task) Set platform version: LATEST Enter a Service name (e.g., backend-service) Configure number of tasks and Auto Scaling\nDesired tasks: 1 or more depending on load Enable Service Auto Scaling Set min = 1, max = 3 Scaling policy: target CPU utilization 50% Select VPC and subnets\nChoose the appropriate VPC and Subnets for deployment Check Enable public IP (for testing/public access) Attach to existing Load Balancer (ALB)\nSelect Application Load Balancer Choose your existing ALB (e.g., backend-alb) Select listener port 80 or 443 Add new target group or select existing one Path pattern: /api/* Review and Create Service\nClick Next and Create Service Wait for service to deploy and desired task to reach RUNNING status "
+	"content": " Open Amazon ECS Console\nNavigate to the ECS Console. On the left panel, click Task Definitions, then select Create new Task Definition. Select launch type\nOn the first screen, choose FARGATE as the launch type. Click Next step. Define task settings\nTask Definition Name: enter a name (e.g., springboot-backend-task). Task Role: choose ecsTaskExecutionRole. If it doesn’t exist, click \u0026ldquo;Create new role\u0026rdquo; and allow default permissions. Operating system family: keep as Linux. CPU: choose 512 (.5 vCPU) or 1024 (1 vCPU) depending on your needs. Memory: choose 1024 (1 GB) or higher. Network mode: leave as awsvpc. Add container definition\nScroll to Container definitions and click Add container. Fill in the following details: Container name: springboot-container Image URI: your ECR image URI\n(e.g., \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest) Port mappings: set Container port to 8080 Configure logging\nIn the container section, enable Log configuration: Select awslogs as the log driver Log group: /ecs/springboot-backend (or create one in CloudWatch) Region: ap-northeast-1 Stream prefix: springboot Review and create\nClick Next step to review your configuration. Click Create to finish creating the Task Definition. Confirmation\nOnce created, your Task Definition will appear in the ECS Console. You can now use it to create a Fargate Service in the next step. "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/",
 	"title": "Set up SSL using AWS Certificate Manager (ACM)",
 	"tags": [],
 	"description": "",
 	"content": " Go to AWS Certificate Manager (ACM)\nOpen ACM Console Click Request a certificate Choose Request a public certificate Click Next Enter domain name\nType in your domain (e.g. app.example.com) Optionally, add www.app.example.com as an alternate name Click Next Choose validation method\nSelect DNS validation (recommended) Click Next, then Confirm and request Add DNS record to Route 53\nClick Create record in Route 53 (if hosted zone is managed by Route 53) Wait a few minutes until status becomes \u0026ldquo;Issued\u0026rdquo; Note: ACM certificates must be in region us-east-1 for CloudFront.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/",
 	"title": "CI/CD and Monitoring",
 	"tags": [],
 	"description": "",
 	"content": "To enable automation and observability in your system, follow these CI/CD and monitoring steps:\nConfigure GitHub Actions for Frontend and Backend Automate Docker Build and Deployment to ECS Enable CloudWatch Logs for ECS and API Gateway Create CloudWatch Alarms for Monitoring "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/",
 	"title": "Configure CORS, Cache-Control and Error Handling",
 	"tags": [],
 	"description": "",
 	"content": " Set up CORS for S3 Bucket\nGo to the S3 Console → select the bucket used to host your frontend\nNavigate to the Permissions tab → scroll down to Cross-origin resource sharing (CORS)\nClick Edit and paste the following JSON:\n[ { \u0026#34;AllowedHeaders\u0026#34;: [\u0026#34;*\u0026#34;], \u0026#34;AllowedMethods\u0026#34;: [\u0026#34;GET\u0026#34;, \u0026#34;HEAD\u0026#34;], \u0026#34;AllowedOrigins\u0026#34;: [\u0026#34;*\u0026#34;], \u0026#34;ExposeHeaders\u0026#34;: [], \u0026#34;MaxAgeSeconds\u0026#34;: 3000 } ] You can replace \u0026quot;*\u0026quot; in AllowedOrigins with a specific domain for better security.\nConfigure Cache-Control for static files\nOn your local machine, after building the project (e.g., npm run build), you’ll have static files in a folder like build/ or dist/ Before uploading to S3, set the Cache-Control header for better performance using AWS CLI or the S3 Console Example with AWS CLI:\naws s3 cp build/ s3://your-bucket-name/ --recursive \\ --cache-control \u0026#34;max-age=86400\u0026#34; "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/",
-	"title": "Set up Application Load Balancer for routing",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/4-create-fargate-service/",
+	"title": "Create ECS Fargate Service and enable Auto Scaling",
 	"tags": [],
 	"description": "",
-	"content": " Go to EC2 Console to create ALB\nNavigate to EC2 Console On the left menu, under Load Balancing, click Load Balancers Click Create Load Balancer Select Application Load Balancer, then click Create Configure Load Balancer settings\nName: backend-alb Scheme: Internet-facing (or internal if private) IP address type: IPv4 Listeners: Add HTTP (port 80), or HTTPS (port 443) if using SSL Select your VPC and Subnets (minimum 2 in different AZs) Configure security group for ALB\nSelect or create a Security Group that allows inbound access on port 80 and/or 443 Example: allow 0.0.0.0/0 for HTTP (testing only) Set up Target Group\nChoose New target group Target type: IP (for Fargate) Name: backend-target-group Protocol: HTTP, Port: 8080 Health check path: /actuator/health or / if none Register targets later\nYou don’t need to register tasks here — ECS will handle it when you create the service Click Next, review configuration, and Create Load Balancer Done\nALB is now ready to route traffic to your ECS backend service You can test it by hitting the ALB DNS name (e.g., backend-alb-123456.elb.amazonaws.com) "
+	"content": " Open ECS Cluster and select your target cluster\nGo to the Amazon ECS Console In the sidebar, click Clusters Choose the cluster you created (e.g., production-cluster) Create a new Service from Task Definition\nInside your cluster, go to the Services tab Click Create → select FARGATE as launch type Choose your Task Definition (e.g., springboot-backend-task) Set platform version: LATEST Enter a Service name (e.g., backend-service) Configure number of tasks and Auto Scaling\nDesired tasks: 1 or more depending on load Enable Service Auto Scaling Set min = 1, max = 3 Scaling policy: target CPU utilization 50% Select VPC and subnets\nChoose the appropriate VPC and Subnets for deployment Check Enable public IP (for testing/public access) Attach to existing Load Balancer (ALB)\nSelect Application Load Balancer Choose your existing ALB (e.g., backend-alb) Select listener port 80 or 443 Add new target group or select existing one Path pattern: /api/* Review and Create Service\nClick Next and Create Service Wait for service to deploy and desired task to reach RUNNING status "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/",
 	"title": "Set up Route 53 Record for Custom Domain",
 	"tags": [],
 	"description": "",
 	"content": " Open Route 53 Console\nGo to Route 53 Console Click on Hosted zones Select the hosted zone for your domain (e.g. example.com) Create a new record\nClick Create record Set the record name: app (if you want app.example.com) Choose Record type: A – IPv4 address Select Alias: Yes Choose Alias to: Application Load Balancer (ALB) or CloudFront, depending on usage Select the region and the correct ALB or CloudFront distribution Save the record\nClick Create records Wait for DNS propagation (can take a few minutes) You can now access your app at your custom domain!\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/",
+	"title": "Set up Application Load Balancer for routing",
+	"tags": [],
+	"description": "",
+	"content": " Go to EC2 Console to create ALB\nNavigate to EC2 Console On the left menu, under Load Balancing, click Load Balancers Click Create Load Balancer Select Application Load Balancer, then click Create Configure Load Balancer settings\nName: backend-alb Scheme: Internet-facing (or internal if private) IP address type: IPv4 Listeners: Add HTTP (port 80), or HTTPS (port 443) if using SSL Select your VPC and Subnets (minimum 2 in different AZs) Configure security group for ALB\nSelect or create a Security Group that allows inbound access on port 80 and/or 443 Example: allow 0.0.0.0/0 for HTTP (testing only) Set up Target Group\nChoose New target group Target type: IP (for Fargate) Name: backend-target-group Protocol: HTTP, Port: 8080 Health check path: /actuator/health or / if none Register targets later\nYou don’t need to register tasks here — ECS will handle it when you create the service Click Next, review configuration, and Create Load Balancer Done\nALB is now ready to route traffic to your ECS backend service You can test it by hitting the ALB DNS name (e.g., backend-alb-123456.elb.amazonaws.com) "
+},
+{
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/",
 	"title": "Upload Static Files to S3",
 	"tags": [],
 	"description": "",
 	"content": " Upload using AWS Console\nGo to the S3 Console Open your S3 bucket used for hosting Click Upload → Add files/folder from your build/ or dist/ directory (depending on your framework) Set the Content-Type for .html, .js, .css, .json files if needed Click Upload Upload using AWS CLI\nIf you’ve installed the AWS CLI and configured credentials:\naws s3 cp build/ s3://your-bucket-name/ --recursive "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/",
 	"title": "Configure VPC, Subnets, and Security Groups for ECS",
 	"tags": [],
 	"description": "",
 	"content": " Create VPC and Subnets\nGo to the VPC Console Select Your VPCs → Create VPC Choose VPC and more to auto-create VPC, subnets, and other components Configuration: VPC Name: workshop-vpc CIDR block: 10.0.0.0/16 Create at least 2 subnets in different AZs Enable Auto-assign public IPv4 Create Internet Gateway and Attach to VPC\nIn left menu, go to Internet Gateways Click Create Internet Gateway and name it Click Attach to VPC and select workshop-vpc Create Route Table and Associate with Subnets\nGo to Route Tables → Create route table Select VPC: workshop-vpc After creation, edit routes: Destination: 0.0.0.0/0 Target: Internet Gateway Then associate it with the subnets Create Security Group for ECS Backend\nGo to Security Groups → Create security group Name: ecs-backend-sg VPC: workshop-vpc Inbound Rules: Allow HTTP (port 80), or HTTPS (443) Allow port 8080 for backend Allow port 3306 for MySQL if needed Outbound: leave default (allow all) Attach VPC and Security Group to ECS Service\nDuring ECS Service creation, select workshop-vpc Choose the subnets in different AZs Attach the security group ecs-backend-sg Verify\nEnsure all components are properly configured and attached ECS tasks should have internet access via public subnet or NAT "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/",
 	"title": "",
 	"tags": [],
 	"description": "",
-	"content": "title: \u0026ldquo;Connect to Amazon RDS or MySQL container\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 5 chapter: false pre: \u0026quot; 1.5 \u0026quot; Option 1: Connect to Amazon RDS (Managed MySQL)\nOpen the Amazon RDS Console Click Create database → choose Standard Create Select Engine: MySQL (latest version) Configure basic settings: DB instance identifier: my-rds-instance Master username \u0026amp; password Enable Public access Port: 3306 In Connectivity section: Select appropriate VPC \u0026amp; subnet group Attach or create a Security Group allowing inbound traffic on port 3306 Option 2: Use MySQL container in ECS Cluster\nCreate a new Task Definition: Image: mysql:8 Environment variables: MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD Run this task inside same VPC \u0026amp; subnet as backend Use internal DNS name or service discovery to connect from backend Update Backend Task Definition\nSet environment variables for datasource: SPRING_DATASOURCE_URL SPRING_DATASOURCE_USERNAME SPRING_DATASOURCE_PASSWORD For RDS: use endpoint from RDS console For MySQL container: use internal service name or IP "
+	"content": "title: \u0026ldquo;Deploy Backend with ECS Fargate\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 1 chapter: false pre: \u0026quot; 1. \u0026quot; To deploy the backend with ECS Fargate, follow the step-by-step guides below:\nProvision Amazon RDS (MySQL/PostgreSQL) Database Create ECR repository and push Docker image Create ECS Task Definition for Backend Application Create ECS Fargate Service and enable Auto Scaling Set up Application Load Balancer for routing Configure backend connection to RDS Configure VPC, Subnets, and Security Groups "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": "title: \u0026ldquo;Connect to Amazon RDS or MySQL container\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 6 chapter: false pre: \u0026quot; 1.6 \u0026quot; Option 1: Connect to Amazon RDS (Managed MySQL)\nOpen the Amazon RDS Console Click Create database → choose Standard Create Select Engine: MySQL (latest version) Configure basic settings: DB instance identifier: my-rds-instance Master username \u0026amp; password Enable Public access Port: 3306 In Connectivity section: Select appropriate VPC \u0026amp; subnet group Attach or create a Security Group allowing inbound traffic on port 3306 Option 2: Use MySQL container in ECS Cluster\nCreate a new Task Definition: Image: mysql:8 Environment variables: MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD Run this task inside same VPC \u0026amp; subnet as backend Use internal DNS name or service discovery to connect from backend Update Backend Task Definition\nSet environment variables for datasource: SPRING_DATASOURCE_URL SPRING_DATASOURCE_USERNAME SPRING_DATASOURCE_PASSWORD For RDS: use endpoint from RDS console For MySQL container: use internal service name or IP "
+},
+{
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "title: \u0026ldquo;Automate Docker Build and Deployment to ECS\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 2 chapter: false pre: \u0026quot; 4.2 \u0026quot; Create .github/workflows/docker-ecs-deploy.yml in backend repository\nThis workflow automates Docker image build and ECS deployment on every push to main. name: Docker Build \u0026amp; Deploy to ECS on: push: branches: [main] jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Set up Docker Buildx uses: docker/setup-buildx-action@v2 - name: Authenticate to Amazon ECR uses: aws-actions/amazon-ecr-login@v1 - name: Build and push Docker image to ECR run: | docker build -t ${{ secrets.ECR_REPO }} . docker tag ${{ secrets.ECR_REPO }}:latest ${{ secrets.ECR_URI }} docker push ${{ secrets.ECR_URI }} - name: Deploy new image to ECS uses: aws-actions/amazon-ecs-deploy-task-definition@v1 with: task-definition: ecs-task-def.json service: your-ecs-service cluster: your-ecs-cluster wait-for-service-stability: true Required GitHub Secrets\nECR_REPO ECR_URI AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY And any other environment variables used in the workflow "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "title: \u0026ldquo;Enable CloudWatch Logs for ECS and API Gateway\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 3 chapter: false pre: \u0026quot; 4.3 \u0026quot; Enable CloudWatch Logs for ECS Task\nDuring ECS Task Definition setup: Open the Log configuration section. Choose awslogs as the log driver. Fill in: Log group: /ecs/springboot-backend Region: ap-northeast-1 Stream prefix: ecs ECS will automatically send container logs to CloudWatch. Enable CloudWatch Logs for API Gateway\nIn the API Gateway Console, select your API. Go to Stages → select your stage (e.g., prod). Click on the Logs/Tracing tab: Enable CloudWatch Logs. Set Log level to INFO or ERROR. Optionally check Log full requests/responses data. View logs in CloudWatch\nGo to CloudWatch Console. Navigate to Log groups → search for the log group. Click to view real-time log entries. "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "title: \u0026ldquo;Create CloudWatch Alarms for Monitoring\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 4 chapter: false pre: \u0026quot; 4.4 \u0026quot; We created CloudWatch alarms to monitor system health, focusing on ECS service performance and API Gateway errors.\nECS Service (CPU \u0026amp; Memory) Monitoring\nAccessed CloudWatch Console. Chose Alarms → Create Alarm. Selected ECS Metrics, then picked CPUUtilization and MemoryUtilization for the backend service. Set the following conditions: Threshold: \u0026gt;= 70% Period: 5 minutes Consecutive evaluations: 3 Added notification action via SNS. API Gateway Error Monitoring\nChose metric 5XXError and Latency under API Gateway Metrics. Set thresholds (e.g., more than 10 errors in 5 minutes). Added alarm name and SNS notification target. These alarms were deployed and tested successfully. We now receive alerts if the system exceeds performance thresholds or API errors occur.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/categories/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/tags/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

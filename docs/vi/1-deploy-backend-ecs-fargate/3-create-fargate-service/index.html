@@ -3,7 +3,7 @@
   <head><script src="/CapLeHuuTan_WorkShop/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=CapLeHuuTan_WorkShop/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.147.9">
+    <meta name="generator" content="Hugo 0.148.2">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>Tạo ECS Fargate Service và cấu hình Auto Scaling :: Tạo mới tài khoản AWS</title>
 
     
-    <link href="/CapLeHuuTan_WorkShop/css/nucleus.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/fontawesome-all.min.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/hybrid.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/featherlight.min.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/perfect-scrollbar.min.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/auto-complete.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/atom-one-dark-reasonable.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/theme.css?1752743567" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/hugo-theme.css?1752743567" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/nucleus.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/fontawesome-all.min.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/hybrid.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/featherlight.min.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/perfect-scrollbar.min.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/auto-complete.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/atom-one-dark-reasonable.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/theme.css?1754366050" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/hugo-theme.css?1754366050" rel="stylesheet">
     
-    <link href="/CapLeHuuTan_WorkShop/css/theme-workshop.css?1752743567" rel="stylesheet">
+    <link href="/CapLeHuuTan_WorkShop/css/theme-workshop.css?1754366050" rel="stylesheet">
     
     
 
-    <script src="/CapLeHuuTan_WorkShop/js/jquery-3.3.1.min.js?1752743567"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/jquery-3.3.1.min.js?1754366050"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/lunr.min.js?1752743567"></script>
-<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/auto-complete.js?1752743567"></script>
+<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/lunr.min.js?1754366050"></script>
+<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/auto-complete.js?1754366050"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/CapLeHuuTan_WorkShop\/\/vi";
     
 </script>
-<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/search.js?1752743567"></script>
+<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/search.js?1754366050"></script>
 
     
   </div>
@@ -113,34 +113,6 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/" title="Tạo repository ECR và đẩy Docker image" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/">
-           <b> 1.1 </b> Tạo repository ECR và đẩy Docker image
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
     <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-task-definition/" title="Tạo Task Definition cho ứng dụng Backend" class="dd-item 
         
         
@@ -176,90 +148,6 @@
         ">
       <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-fargate-service/">
            <b> 1.3 </b> Tạo ECS Fargate Service và cấu hình Auto Scaling
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/" title="Tạo Application Load Balancer để định tuyến" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/">
-           <b> 1.4 </b> Tạo Application Load Balancer để định tuyến
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/" title="Cấu hình VPC, Subnet và Security Group cho ECS" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/">
-           <b> 1.6 </b> Cấu hình VPC, Subnet và Security Group cho ECS
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/" title="" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/">
-          
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1072,73 +960,6 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1158,6 +979,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1428,7 +1252,7 @@
 			<a class="nav nav-prev" href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-task-definition/" title="Tạo Task Definition cho ứng dụng Backend"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/" title="Tạo Application Load Balancer để định tuyến" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/" title="Triển khai Frontend với S3 và CloudFront" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1438,19 +1262,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/CapLeHuuTan_WorkShop/js/clipboard.min.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.min.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.jquery.min.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/jquery.sticky.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/featherlight.min.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/highlight.pack.js?1752743567"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/clipboard.min.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.min.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.jquery.min.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/jquery.sticky.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/featherlight.min.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/highlight.pack.js?1754366050"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/CapLeHuuTan_WorkShop/js/modernizr.custom-3.6.0.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/learn.js?1752743567"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/hugo-learn.js?1752743567"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/modernizr.custom-3.6.0.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/learn.js?1754366050"></script>
+    <script src="/CapLeHuuTan_WorkShop/js/hugo-learn.js?1754366050"></script>
 
-    <link href="/CapLeHuuTan_WorkShop/mermaid/mermaid.css?1752743567" rel="stylesheet" />
-    <script src="/CapLeHuuTan_WorkShop/mermaid/mermaid.js?1752743567"></script>
+    <link href="/CapLeHuuTan_WorkShop/mermaid/mermaid.css?1754366050" rel="stylesheet" />
+    <script src="/CapLeHuuTan_WorkShop/mermaid/mermaid.js?1754366050"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

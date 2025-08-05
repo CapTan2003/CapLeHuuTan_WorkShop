@@ -1,181 +1,188 @@
 [
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/",
 	"title": "Build ứng dụng frontend ở chế độ production",
 	"tags": [],
 	"description": "",
-	"content": " Chuyển vào thư mục frontend của dự án (nếu có)\ncd frontend Cài đặt các dependencies cần thiết\nNếu bạn chưa cài, chạy: npm install Build ứng dụng ở chế độ production\nSử dụng lệnh sau để build frontend (React, Vue, v.v): npm run build Thư mục đầu ra thường là build/ (React) hoặc dist/ (Vue, Vite)\nKết quả là một tập hợp các file HTML, JS, CSS đã được đóng gói sẵn sàng để upload lên S3\nKiểm tra thư mục build\nKiểm tra thư mục đầu ra sau khi build có chứa các file như index.html, main.js, style.css, v.v: ls build hoặc\nls dist Nếu có đầy đủ file, bạn đã sẵn sàng để chuyển sang bước tiếp theo: upload lên S3 và phân phối qua CloudFront "
+	"content": " Chuyển vào thư mục frontend của dự án (nếu có)\ncd frontend Cài đặt các dependencies cần thiết\nNếu bạn chưa cài, chạy: npm install Build ứng dụng ở chế độ production\nSử dụng lệnh sau để build frontend (React, Vue, Vite, v.v.): npm run build Thư mục đầu ra thường là build/ (React) hoặc dist/ (Vue, Vite)\nKết quả là một tập hợp các file HTML, JS, CSS đã được đóng gói, sẵn sàng để upload lên S3\nKiểm tra thư mục build\nKiểm tra thư mục đầu ra có chứa các file như index.html, main.js, style.css, v.v.: ls build hoặc\nls dist Xem thử ứng dụng trên trình duyệt (tùy chọn)\nCài công cụ serve nếu chưa có: npm install -g serve Chạy thử ứng dụng React: serve -s build Hoặc với Vue/Vite: serve -s dist Sau đó mở trình duyệt và truy cập địa chỉ: http://localhost:3000 Nếu dùng Windows, có thể tự động mở trình duyệt bằng lệnh: start http://localhost:3000 ✅ Nếu mọi thứ hiển thị đúng, bạn có thể chuyển sang bước tiếp theo: upload lên S3 và phân phối qua CloudFront.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/",
+	"title": "Tạo Cơ Sở Dữ Liệu RDS (MySQL)",
+	"tags": [],
+	"description": "",
+	"content": " Tạo CSDL RDS bằng AWS Console\nTruy cập bảng điều khiển Amazon RDS. Chọn Databases → nhấn Create database. Ở phần Database creation method, chọn Standard Create. Chọn engine và phiên bản\nEngine type: MySQL Version: chọn phiên bản ổn định, ví dụ: MySQL 8.0.x Thiết lập thông tin đăng nhập\nDB instance identifier: study-english Master username: admin Master password: đặt mật khẩu bảo mật và ghi nhớ Cấu hình phần cứng và dung lượng\nDB instance class: chọn loại tiết kiệm như db.t3.micro (Free Tier) Storage: giữ mặc định 20 GiB (có thể bật auto-scaling nếu cần) Cấu hình kết nối mạng\nVirtual Private Cloud (VPC): chọn VPC mà ECS sẽ sử dụng Subnet group: giữ mặc định hoặc chọn nhóm phù hợp Public access: Yes (nếu cần test từ máy local)\n👉 Sau khi triển khai xong nên đổi thành No để bảo mật Security Group: mở cổng TCP 3306 Cấu hình bổ sung\nInitial database name: study-english Backup và Monitoring: có thể tắt nếu chỉ dùng để phát triển/test Nhấn Create database để tạo Chờ RDS được tạo xong\nTrạng thái sẽ là Creating... trong vài phút. Khi chuyển sang Available, nhấn vào tên DB để xem chi tiết. Sao chép Endpoint để cấu hình\nTrong tab Connectivity \u0026amp; security, tìm trường Endpoint Ví dụ: study-english.c9d2gkxxxxx.ap-northeast-1.rds.amazonaws.com (Tuỳ chọn) Kiểm tra kết nối từ máy local\nmysql -h study-english.\u0026lt;region\u0026gt;.rds.amazonaws.com -u admin -p Đảm bảo: RDS cho phép public access (nếu test) Cổng 3306 đã được mở trong Security Group "
+},
+{
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/",
 	"title": "Tạo HTTP API trong API Gateway",
 	"tags": [],
 	"description": "",
 	"content": " Mở API Gateway Console\nTruy cập Amazon API Gateway Nhấn Create API → chọn HTTP API Nhấn Build Cấu hình thông tin cơ bản\nTên API: web-app-api Mô tả: Không bắt buộc Chọn endpoint type: Regional Cấu hình route\nNhấn Add integration Chọn loại tích hợp: ALB Chọn ALB và listener đã tạo trước đó Đường dẫn: /api/* → method: ANY Triển khai API\nStage name: prod Nhấn Create Kiểm tra HTTP API\nSao chép đường dẫn invoke URL Kiểm tra bằng curl hoặc frontend curl https://\u0026lt;your-api-id\u0026gt;.execute-api.\u0026lt;region\u0026gt;.amazonaws.com/prod/api/health "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/",
-	"title": "Tạo repository ECR và đẩy Docker image",
-	"tags": [],
-	"description": "",
-	"content": " Tạo repository trên ECR bằng giao diện AWS Console\nTruy cập ECR dashboard. Nhấn Create repository. Chọn loại Private, đặt tên repository (ví dụ: springboot-backend) và giữ các thiết lập mặc định. Nhấn Create để hoàn tất. Lấy lệnh push từ giao diện ECR\nSau khi tạo xong, nhấn vào tên repository bạn vừa tạo. Ở góc trên bên phải, chọn View push commands. Giao diện sẽ hiển thị các lệnh CLI để: Đăng nhập Docker vào ECR Build Docker image Tag image Push image lên ECR Đăng nhập vào ECR bằng Docker CLI\nCopy lệnh đăng nhập từ bước trên và chạy trên terminal: aws ecr get-login-password \\ --region ap-northeast-1 \\ | docker login \\ --username AWS \\ --password-stdin \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com Build Docker image từ mã nguồn local\nMở terminal tại thư mục chứa Dockerfile, sau đó chạy: docker build -t springboot-backend . Gán tag cho image theo định dạng ECR\ndocker tag springboot-backend:latest \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Push Docker image lên ECR\ndocker push \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Kiểm tra hình ảnh đã đẩy lên ECR\nQuay lại repository trong AWS Console. Mở tab Images. Bạn sẽ thấy image kèm theo tag và thời gian push. "
-},
-{
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/",
 	"title": "Thiết lập GitHub Actions cho Frontend và Backend",
 	"tags": [],
 	"description": "",
 	"content": " Tạo workflow GitHub Actions cho Frontend (S3)\nTruy cập vào repository frontend của bạn. Tạo file mới tại .github/workflows/deploy-frontend.yml. name: Deploy Frontend to S3 on: push: branches: [main] jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Setup Node.js uses: actions/setup-node@v3 with: node-version: 18 - name: Cài đặt dependencies và build run: | npm ci npm run build - name: Đồng bộ lên S3 uses: jakejarvis/s3-sync-action@master with: args: --acl public-read --delete env: AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }} AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_REGION: \u0026#34;ap-northeast-1\u0026#34; SOURCE_DIR: \u0026#34;dist\u0026#34; Tạo workflow GitHub Actions cho Backend (ECS Fargate)\nTrong repository backend, tạo file .github/workflows/deploy-backend.yml. name: Deploy Backend to ECS on: push: branches: [main] jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Setup Docker uses: docker/setup-buildx-action@v2 - name: Đăng nhập vào Amazon ECR uses: aws-actions/amazon-ecr-login@v1 - name: Build và đẩy Docker image run: | docker build -t ${{ secrets.ECR_REPO }} . docker tag ${{ secrets.ECR_REPO }}:latest ${{ secrets.ECR_URI }} docker push ${{ secrets.ECR_URI }} - name: Triển khai lên ECS uses: aws-actions/amazon-ecs-deploy-task-definition@v1 with: task-definition: ecs-task-def.json service: your-ecs-service cluster: your-ecs-cluster wait-for-service-stability: true Đảm bảo đã tạo các biến GitHub Secrets cần thiết:\nAWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_S3_BUCKET ECR_REPO ECR_URI Các biến môi trường khác nếu có "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/",
 	"title": "Trang chủ",
 	"tags": [],
 	"description": "",
 	"content": "Triển khai ứng dụng web tách biệt trên AWS Frontend + Backend với các thực hành tốt nhất Tổng quan Workshop này hướng dẫn bạn triển khai một ứng dụng web hiện đại theo kiến trúc tách biệt (decoupled) trên AWS, tuân theo các thực hành tốt nhất trong kiến trúc điện toán đám mây.\nHệ thống gồm frontend (React SPA lưu trữ trên S3 và phân phối qua CloudFront) và backend container hóa (Spring Boot chạy trên ECS Fargate sau ALB).\nAmazon API Gateway điều phối luồng yêu cầu, backend kết nối đến cơ sở dữ liệu MySQL được quản lý bởi Amazon RDS.\nChúng ta cũng tích hợp CI/CD pipelines và giám sát với CloudWatch.\nCông nghệ sử dụng Dự án bao gồm cả phần frontend và backend:\nFrontend: React SPA\nLưu trữ trên Amazon S3 Phân phối qua Amazon CloudFront Backend: Java Spring Boot API\nContainer hóa bằng Docker Chạy trên ECS Fargate phía sau Application Load Balancer Cơ sở dữ liệu: Amazon RDS (MySQL)\nCông cụ hạ tầng:\nAWS CLI, IAM, VPC, Route53, Certificate Manager GitHub Actions để triển khai tự động CloudWatch để ghi log và thiết lập cảnh báo Các module Triển khai Backend với ECS Fargate\nTạo repo ECR và push image backend Khai báo ECS Task Definition và Fargate Service Thiết lập Application Load Balancer Kết nối đến RDS hoặc dùng container MySQL Triển khai Frontend với S3 và CloudFront\nBuild ứng dụng React Upload vào S3 bucket Tạo phân phối CloudFront Cấu hình cache và chính sách CORS Cấu hình API Gateway và domain tùy chỉnh\nTạo HTTP API với Amazon API Gateway Điều hướng traffic đến ALB backend Cài đặt SSL với ACM và ánh xạ tên miền với Route53 CI/CD và giám sát\nCấu hình GitHub Actions cho frontend và backend Tự động build và triển khai Bật logging và cảnh báo với CloudWatch Nội dung chính 1. Triển khai Backend với ECS Fargate 2. Triển khai Frontend với S3 và CloudFront 3. Cấu hình API Gateway và domain tùy chỉnh 4. CI/CD và giám sát "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/",
 	"title": "Triển khai Backend với ECS Fargate",
 	"tags": [],
 	"description": "",
-	"content": "Để triển khai backend bằng ECS Fargate, hãy làm theo từng bước hướng dẫn dưới đây:\nTạo repository ECR và đẩy Docker image Khai báo ECS Task Definition cho ứng dụng Spring Boot Tạo ECS Fargate Service và bật Auto Scaling Thiết lập Application Load Balancer để định tuyến Kết nối đến RDS hoặc container MySQL Cấu hình VPC, Subnet và Security Group "
+	"content": "Để triển khai backend bằng ECS Fargate, hãy làm theo từng bước hướng dẫn dưới đây:\nTạo CSDL trên Amazon RDS (MySQL/PostgreSQL) Tạo repository ECR và đẩy Docker image Khai báo ECS Task Definition cho ứng dụng Spring Boot Tạo ECS Fargate Service và bật Auto Scaling Thiết lập Application Load Balancer để định tuyến Kết nối Backend đến RDS Cấu hình VPC, Subnet và Security Group "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-task-definition/",
-	"title": "Tạo Task Definition cho ứng dụng Backend",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/",
+	"title": "Tạo repository ECR và đẩy Docker image",
 	"tags": [],
 	"description": "",
-	"content": " Truy cập giao diện Amazon ECS\nVào ECS Console. Ở menu bên trái, chọn Task Definitions → nhấn Create new Task Definition. Chọn loại khởi chạy (launch type)\nỞ bước đầu tiên, chọn FARGATE làm launch type. Nhấn Next step để tiếp tục. Thiết lập thông tin cho Task\nTask Definition Name: nhập tên định danh (ví dụ: springboot-backend-task) Task Role: chọn ecsTaskExecutionRole\nNếu chưa có, nhấn “Create new role” và dùng mặc định. Operating system: để mặc định là Linux CPU: chọn 512 (.5 vCPU) hoặc 1024 (1 vCPU) tùy mức tải Memory: chọn 1024 (1 GB) trở lên Network mode: để là awsvpc Thêm container cho ứng dụng\nKéo xuống phần Container definitions, nhấn Add container Nhập các thông tin sau: Container name: springboot-container Image URI: nhập địa chỉ image từ ECR\n(ví dụ: \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest) Port mappings: đặt Container port là 8080 Cấu hình logging\nTrong phần cấu hình container, bật mục Log configuration: Log driver: chọn awslogs Log group: /ecs/springboot-backend (hoặc tạo mới trong CloudWatch) Region: ap-northeast-1 Stream prefix: springboot Xác nhận và tạo mới\nNhấn Next step để xem lại cấu hình Cuối cùng nhấn Create để tạo Task Definition Hoàn tất\nKhi tạo thành công, Task Definition sẽ hiển thị trong danh sách của ECS Task này sẽ được dùng để tạo Fargate Service ở bước kế tiếp "
+	"content": " Tạo repository trên ECR bằng giao diện AWS Console\nTruy cập ECR dashboard. Nhấn Create repository. Chọn loại Private, đặt tên repository (ví dụ: springboot-backend) và giữ các thiết lập mặc định. Nhấn Create để hoàn tất. Lấy lệnh push từ giao diện ECR\nSau khi tạo xong, nhấn vào tên repository bạn vừa tạo. Ở góc trên bên phải, chọn View push commands. Giao diện sẽ hiển thị các lệnh CLI để: Đăng nhập Docker vào ECR Build Docker image Tag image Push image lên ECR Đăng nhập vào ECR bằng Docker CLI\nCopy lệnh đăng nhập từ bước trên và chạy trên terminal: aws ecr get-login-password \\ --region ap-northeast-1 \\ | docker login \\ --username AWS \\ --password-stdin \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com Build Docker image từ mã nguồn local\nMở terminal tại thư mục chứa Dockerfile, sau đó chạy: docker build -t springboot-backend . Gán tag cho image theo định dạng ECR\ndocker tag springboot-backend:latest \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Push Docker image lên ECR\ndocker push \\ \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest Kiểm tra hình ảnh đã đẩy lên ECR\nQuay lại repository trong AWS Console. Mở tab Images. Bạn sẽ thấy image kèm theo tag và thời gian push. "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/",
 	"title": "Tạo và cấu hình S3 Bucket để hosting",
 	"tags": [],
 	"description": "",
 	"content": " Truy cập Amazon S3 Console\nTạo bucket mới để chứa frontend\nNhấn Create bucket Đặt tên bucket duy nhất toàn cục (ví dụ: my-frontend-app) Chọn vùng AWS phù hợp Bỏ chọn mục Block all public access (để website có thể truy cập công khai) Tích chọn xác nhận cảnh báo Nhấn Create bucket Bật tính năng Static Website Hosting\nVào bucket → chọn tab Properties Cuộn xuống phần Static website hosting Nhấn Edit Bật Enable static website hosting Điền Index document: index.html Điền Error document: index.html (cho SPA routing) Nhấn Save changes Cấu hình quyền truy cập công khai cho bucket\nVào tab Permissions Cuộn xuống phần Bucket policy Nhấn Edit Dán đoạn policy sau (thay my-frontend-app bằng tên bucket của bạn): { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Sid\u0026#34;: \u0026#34;PublicReadGetObject\u0026#34;, \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: \u0026#34;*\u0026#34;, \u0026#34;Action\u0026#34;: \u0026#34;s3:GetObject\u0026#34;, \u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::my-frontend-app/*\u0026#34; } ] } Nhấn Save Xác nhận bucket đã công khai\nQuay lại tab Objects Bạn có thể truy cập tệp qua URL công khai như sau: http://my-frontend-app.s3-website-ap-northeast-1.amazonaws.com Khi bạn sẵn sàng, mình sẽ viết tiếp bước 3: Thiết lập CloudFront để phân phối nội dung tĩnh.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/",
 	"title": "Tích hợp API Gateway với Application Load Balancer (ALB)",
 	"tags": [],
 	"description": "",
 	"content": " Truy cập HTTP API bạn đã tạo\nMở Amazon API Gateway Console Chọn API (ví dụ: web-app-api) Chuyển đến tab Integrations Thêm tích hợp với ALB\nNhấn Manage integrations → Add integration Loại tích hợp: Application Load Balancer (ALB) Chọn ARN của ALB và listener tương ứng Nhấn Add Thêm route chuyển tiếp traffic\nChuyển sang tab Routes Nhấn Create route Nhập đường dẫn: /api/{proxy+} Phương thức: ANY Chọn tích hợp ALB vừa tạo Nhấn Create Triển khai thay đổi\nChuyển sang tab Deployments Chọn stage (ví dụ: prod) Nhấn Deploy Kiểm tra định tuyến\ncurl https://\u0026lt;your-api-id\u0026gt;.execute-api.\u0026lt;region\u0026gt;.amazonaws.com/prod/api/health "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/",
 	"title": "Triển khai Frontend với S3 và CloudFront",
 	"tags": [],
 	"description": "",
 	"content": "Để triển khai frontend (ứng dụng web tĩnh được build từ React, Vue, Angular\u0026hellip;), thực hiện các bước sau:\nBuild ứng dụng frontend ở chế độ production Tạo và cấu hình S3 Bucket để hosting frontend Thiết lập CloudFront để phân phối nội dung tĩnh Cấu hình CORS, Cache-Control và xử lý lỗi 404/403 Upload các file build lên S3 "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/",
 	"title": "Cài đặt SSL bằng AWS Certificate Manager (ACM)",
 	"tags": [],
 	"description": "",
 	"content": " Truy cập AWS Certificate Manager (ACM)\nMở ACM Console Nhấn Request a certificate Chọn Request a public certificate Nhấn Next Nhập tên miền\nGõ tên miền của bạn (ví dụ: app.example.com) Có thể thêm www.app.example.com nếu cần Nhấn Next Chọn phương thức xác minh\nChọn DNS validation (khuyên dùng) Nhấn Next, sau đó Confirm and request Thêm bản ghi DNS vào Route 53\nNếu dùng Route 53, nhấn Create record in Route 53 Đợi vài phút đến khi trạng thái chuyển thành \u0026ldquo;Issued\u0026rdquo; Lưu ý: Chứng chỉ ACM phải được tạo ở vùng us-east-1 nếu dùng cho CloudFront.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/",
 	"title": "Cấu hình API Gateway và tên miền tuỳ chỉnh",
 	"tags": [],
 	"description": "",
 	"content": "Để cấu hình API Gateway và tên miền tuỳ chỉnh, hãy làm theo các bước sau:\nTạo HTTP API trong API Gateway Tích hợp API Gateway với Application Load Balancer (ALB) Thiết lập SSL với AWS Certificate Manager (ACM) Gán tên miền tuỳ chỉnh bằng Route53 "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/",
 	"title": "Tạo CloudFront Distribution",
 	"tags": [],
 	"description": "",
 	"content": " Truy cập Amazon CloudFront Console\nNhấn “Create Distribution” để bắt đầu\nTrong mục Origin domain, chọn endpoint của S3 dạng static website (kết thúc bằng .s3-website-\u0026lt;region\u0026gt;.amazonaws.com) Để trống Origin path Đặt tên cho Origin name, ví dụ: frontend-s3-origin Chọn Viewer protocol policy là Redirect HTTP to HTTPS Cấu hình cache behavior\nAllowed HTTP methods: GET, HEAD Cache policy: chọn CachingOptimized Bật tùy chọn Compress objects automatically Tiếp tục đặt Viewer protocol policy là Redirect HTTP to HTTPS Thiết lập trang mặc định (Default root object)\nCuộn xuống phần Default root object Nhập index.html để CloudFront tự load trang chủ mặc định Kiểm tra và khởi tạo\nNhấn Create distribution Đợi vài phút để trạng thái chuyển từ In Progress sang Deployed Khi hoàn tất, sao chép Distribution domain name (ví dụ: d123abc.cloudfront.net) — sẽ dùng để truy cập thử hoặc cấu hình domain riêng "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-fargate-service/",
-	"title": "Tạo ECS Fargate Service và cấu hình Auto Scaling",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-task-definition/",
+	"title": "Tạo Task Definition cho ứng dụng Backend",
 	"tags": [],
 	"description": "",
-	"content": " Mở ECS Cluster và chọn cluster cần triển khai\nTruy cập Amazon ECS Console Ở thanh bên trái, chọn Clusters Chọn cluster bạn đã tạo trước đó (ví dụ: production-cluster) Tạo Service mới từ Task Definition\nTrong cluster, chuyển sang tab Services Nhấn Create → chọn loại khởi chạy là FARGATE Chọn Task Definition (ví dụ: springboot-backend-task) Phiên bản platform: chọn LATEST Đặt tên Service (ví dụ: backend-service) Thiết lập số lượng task và bật Auto Scaling\nSố lượng task mong muốn (Desired tasks): 1 hoặc nhiều hơn tùy tải Bật tính năng Service Auto Scaling Cấu hình min = 1, max = 3 task Chính sách scale: sử dụng target CPU là 50% Chọn VPC và subnet để triển khai\nChọn đúng VPC và Subnets đã tạo sẵn Bật Enable public IP nếu muốn truy cập công khai hoặc test Gắn với Load Balancer (ALB) đã có\nChọn Application Load Balancer Chọn ALB hiện tại (ví dụ: backend-alb) Chọn listener port 80 hoặc 443 Thêm target group mới hoặc chọn group sẵn có Thiết lập pattern: /api/* (tuỳ định tuyến) Xem lại và tạo Service\nNhấn Next và sau đó Create Service Chờ vài phút để ECS khởi tạo task và chuyển sang trạng thái RUNNING "
+	"content": " Truy cập giao diện Amazon ECS\nVào ECS Console. Ở menu bên trái, chọn Task Definitions → nhấn Create new Task Definition. Chọn loại khởi chạy (launch type)\nỞ bước đầu tiên, chọn FARGATE làm launch type. Nhấn Next step để tiếp tục. Thiết lập thông tin cho Task\nTask Definition Name: nhập tên định danh (ví dụ: springboot-backend-task) Task Role: chọn ecsTaskExecutionRole\nNếu chưa có, nhấn “Create new role” và dùng mặc định. Operating system: để mặc định là Linux CPU: chọn 512 (.5 vCPU) hoặc 1024 (1 vCPU) tùy mức tải Memory: chọn 1024 (1 GB) trở lên Network mode: để là awsvpc Thêm container cho ứng dụng\nKéo xuống phần Container definitions, nhấn Add container Nhập các thông tin sau: Container name: springboot-container Image URI: nhập địa chỉ image từ ECR\n(ví dụ: \u0026lt;aws_account_id\u0026gt;.dkr.ecr.ap-northeast-1.amazonaws.com/springboot-backend:latest) Port mappings: đặt Container port là 8080 Cấu hình logging\nTrong phần cấu hình container, bật mục Log configuration: Log driver: chọn awslogs Log group: /ecs/springboot-backend (hoặc tạo mới trong CloudWatch) Region: ap-northeast-1 Stream prefix: springboot Xác nhận và tạo mới\nNhấn Next step để xem lại cấu hình Cuối cùng nhấn Create để tạo Task Definition Hoàn tất\nKhi tạo thành công, Task Definition sẽ hiển thị trong danh sách của ECS Task này sẽ được dùng để tạo Fargate Service ở bước kế tiếp "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/",
 	"title": "Cấu hình bản ghi Route 53 cho tên miền tùy chỉnh",
 	"tags": [],
 	"description": "",
 	"content": " Truy cập bảng điều khiển Route 53\nMở Route 53 Console Nhấp vào Hosted zones Chọn hosted zone cho tên miền của bạn (ví dụ: example.com) Tạo bản ghi mới\nNhấn Create record Nhập tên bản ghi: app (nếu bạn muốn app.example.com) Chọn Record type: A – IPv4 address Chọn Alias: Yes Chọn Alias to: Application Load Balancer (ALB) hoặc CloudFront tùy theo cách sử dụng Chọn đúng vùng và ALB hoặc CloudFront tương ứng Lưu bản ghi\nNhấn Create records Chờ quá trình cập nhật DNS hoàn tất (mất vài phút) Giờ bạn đã có thể truy cập ứng dụng bằng tên miền riêng rồi!\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/",
 	"title": "Cấu hình CORS, Cache-Control và xử lý lỗi",
 	"tags": [],
 	"description": "",
 	"content": " Cấu hình CORS cho S3 Bucket\nTruy cập S3 Console → chọn bucket bạn đã tạo để host frontend\nChọn tab Permissions → kéo xuống Cross-origin resource sharing (CORS)\nNhấn Edit và dán đoạn JSON sau:\n[ { \u0026#34;AllowedHeaders\u0026#34;: [\u0026#34;*\u0026#34;], \u0026#34;AllowedMethods\u0026#34;: [\u0026#34;GET\u0026#34;, \u0026#34;HEAD\u0026#34;], \u0026#34;AllowedOrigins\u0026#34;: [\u0026#34;*\u0026#34;], \u0026#34;ExposeHeaders\u0026#34;: [], \u0026#34;MaxAgeSeconds\u0026#34;: 3000 } ] Bạn có thể thay \u0026quot;*\u0026quot; trong AllowedOrigins bằng domain cụ thể để bảo mật hơn.\nCấu hình Cache-Control cho file tĩnh\nTrên máy local, khi bạn build project (ví dụ npm run build), các file sẽ được tạo trong thư mục build/ hoặc dist/ Trước khi upload lên S3, bạn có thể cấu hình header Cache-Control cho từng file bằng AWS CLI hoặc trong giao diện S3 Ví dụ nếu dùng AWS CLI:\naws s3 cp build/ s3://your-bucket-name/ --recursive \\ --cache-control \u0026#34;max-age=86400\u0026#34; "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/",
 	"title": "CI/CD và Giám sát hệ thống",
 	"tags": [],
 	"description": "",
 	"content": "Để tự động hóa và giám sát hệ thống hiệu quả, hãy làm theo các bước sau:\nCấu hình GitHub Actions cho Frontend và Backend Tự động build Docker và triển khai lên ECS Bật ghi log CloudWatch cho ECS và API Gateway Tạo cảnh báo CloudWatch để giám sát "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/",
-	"title": "Tạo Application Load Balancer để định tuyến",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-fargate-service/",
+	"title": "Tạo ECS Fargate Service và cấu hình Auto Scaling",
 	"tags": [],
 	"description": "",
-	"content": " Truy cập EC2 Console để tạo ALB\nTruy cập EC2 Console Ở menu bên trái, trong mục Load Balancing, chọn Load Balancers Nhấn Create Load Balancer Chọn loại Application Load Balancer, sau đó nhấn Create Cấu hình thông tin cho Load Balancer\nTên: backend-alb Scheme: chọn Internet-facing (nếu public) hoặc Internal (nếu private) IP address type: IPv4 Listener: thêm HTTP (port 80), hoặc HTTPS (port 443) nếu bạn có SSL Chọn VPC và Subnets (tối thiểu 2 subnet khác AZ) Cấu hình Security Group cho ALB\nChọn hoặc tạo mới Security Group cho phép truy cập vào port 80 và/hoặc 443 Ví dụ: cho phép 0.0.0.0/0 vào port 80 để test Thiết lập Target Group\nChọn New target group Target type: chọn IP (phù hợp với Fargate) Tên: backend-target-group Protocol: HTTP, Port: 8080 Health check path: /actuator/health hoặc / nếu không có endpoint kiểm tra Bỏ qua phần đăng ký Target\nBạn không cần đăng ký task ECS ở đây, vì ECS sẽ tự động gán khi tạo Service Nhấn Next, kiểm tra lại cấu hình và nhấn Create Load Balancer Hoàn tất\nALB đã sẵn sàng để định tuyến traffic đến backend của ECS Bạn có thể kiểm tra bằng cách truy cập vào DNS name của ALB\n(ví dụ: backend-alb-123456.elb.amazonaws.com) "
+	"content": " Mở ECS Cluster và chọn cluster cần triển khai\nTruy cập Amazon ECS Console Ở thanh bên trái, chọn Clusters Chọn cluster bạn đã tạo trước đó (ví dụ: production-cluster) Tạo Service mới từ Task Definition\nTrong cluster, chuyển sang tab Services Nhấn Create → chọn loại khởi chạy là FARGATE Chọn Task Definition (ví dụ: springboot-backend-task) Phiên bản platform: chọn LATEST Đặt tên Service (ví dụ: backend-service) Thiết lập số lượng task và bật Auto Scaling\nSố lượng task mong muốn (Desired tasks): 1 hoặc nhiều hơn tùy tải Bật tính năng Service Auto Scaling Cấu hình min = 1, max = 3 task Chính sách scale: sử dụng target CPU là 50% Chọn VPC và subnet để triển khai\nChọn đúng VPC và Subnets đã tạo sẵn Bật Enable public IP nếu muốn truy cập công khai hoặc test Gắn với Load Balancer (ALB) đã có\nChọn Application Load Balancer Chọn ALB hiện tại (ví dụ: backend-alb) Chọn listener port 80 hoặc 443 Thêm target group mới hoặc chọn group sẵn có Thiết lập pattern: /api/* (tuỳ định tuyến) Xem lại và tạo Service\nNhấn Next và sau đó Create Service Chờ vài phút để ECS khởi tạo task và chuyển sang trạng thái RUNNING "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/",
 	"title": "Tải các file tĩnh lên S3",
 	"tags": [],
 	"description": "",
 	"content": " Tải file lên bằng AWS Console\nTruy cập S3 Console Mở bucket S3 bạn đã tạo để hosting frontend Nhấn Upload → Add files/folder, chọn thư mục build/ hoặc dist/ (tuỳ framework) Nếu cần, đặt thủ công Content-Type cho các file .html, .js, .css, .json Nhấn Upload Tải file lên bằng AWS CLI\nNếu bạn đã cài AWS CLI và cấu hình credentials:\naws s3 cp build/ s3://ten-bucket-cua-ban/ --recursive "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/",
+	"title": "Tạo Application Load Balancer để định tuyến",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập EC2 Console để tạo ALB\nTruy cập EC2 Console Ở menu bên trái, trong mục Load Balancing, chọn Load Balancers Nhấn Create Load Balancer Chọn loại Application Load Balancer, sau đó nhấn Create Cấu hình thông tin cho Load Balancer\nTên: backend-alb Scheme: chọn Internet-facing (nếu public) hoặc Internal (nếu private) IP address type: IPv4 Listener: thêm HTTP (port 80), hoặc HTTPS (port 443) nếu bạn có SSL Chọn VPC và Subnets (tối thiểu 2 subnet khác AZ) Cấu hình Security Group cho ALB\nChọn hoặc tạo mới Security Group cho phép truy cập vào port 80 và/hoặc 443 Ví dụ: cho phép 0.0.0.0/0 vào port 80 để test Thiết lập Target Group\nChọn New target group Target type: chọn IP (phù hợp với Fargate) Tên: backend-target-group Protocol: HTTP, Port: 8080 Health check path: /actuator/health hoặc / nếu không có endpoint kiểm tra Bỏ qua phần đăng ký Target\nBạn không cần đăng ký task ECS ở đây, vì ECS sẽ tự động gán khi tạo Service Nhấn Next, kiểm tra lại cấu hình và nhấn Create Load Balancer Hoàn tất\nALB đã sẵn sàng để định tuyến traffic đến backend của ECS Bạn có thể kiểm tra bằng cách truy cập vào DNS name của ALB\n(ví dụ: backend-alb-123456.elb.amazonaws.com) "
+},
+{
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/",
 	"title": "Cấu hình VPC, Subnet và Security Group cho ECS",
 	"tags": [],
 	"description": "",
 	"content": " Tạo VPC và Subnet\nTruy cập VPC Console Chọn Your VPCs → Create VPC Chọn VPC and more để tự động tạo VPC, Subnet, Internet Gateway,\u0026hellip; Cấu hình: Tên VPC: workshop-vpc CIDR block: 10.0.0.0/16 Tạo ít nhất 2 subnet ở các Availability Zones khác nhau Bật Auto-assign public IPv4 Tạo Internet Gateway và gán vào VPC\nTrong menu trái, chọn Internet Gateways Nhấn Create Internet Gateway, đặt tên Nhấn Attach to VPC và chọn VPC vừa tạo (workshop-vpc) Tạo Route Table và liên kết với Subnet\nVào Route Tables → Create route table Chọn VPC: workshop-vpc Sau khi tạo, chỉnh Routes: Destination: 0.0.0.0/0 Target: Internet Gateway Sau đó liên kết với các Subnet đã tạo Tạo Security Group cho ECS backend\nVào Security Groups → Create security group Tên: ecs-backend-sg VPC: chọn workshop-vpc Inbound rules: Cho phép HTTP (port 80), HTTPS (443) nếu có Cho phép port 8080 cho backend Cho phép port 3306 nếu kết nối RDS hoặc MySQL container Outbound: giữ mặc định (cho phép tất cả) Kết nối VPC và Security Group với ECS\nKhi tạo ECS Service, chọn VPC workshop-vpc Chọn các subnet thuộc AZ khác nhau Gán Security Group ecs-backend-sg Xác nhận\nĐảm bảo các thành phần được cấu hình và liên kết chính xác ECS task có thể truy cập internet nếu dùng subnet công cộng hoặc NAT Gateway "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/",
 	"title": "",
 	"tags": [],
 	"description": "",
-	"content": "title: \u0026ldquo;Kết nối với Amazon RDS hoặc container MySQL\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 5 chapter: false pre: \u0026quot; 1.5 \u0026quot; Tùy chọn 1: Kết nối với Amazon RDS (MySQL được quản lý)\nMở Amazon RDS Console Chọn Create database → chọn Standard Create Engine: MySQL (phiên bản mới nhất) Cấu hình cơ bản: DB instance identifier: my-rds-instance Tên đăng nhập \u0026amp; mật khẩu Bật Public access Cổng kết nối: 3306 Trong phần Connectivity: Chọn đúng VPC và subnet group Thêm hoặc tạo mới Security Group cho phép truy cập cổng 3306 Tùy chọn 2: Sử dụng container MySQL trong ECS Cluster\nTạo mới một Task Definition: Image: mysql:8 Environment variables: MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD Chạy task trong cùng VPC \u0026amp; subnet với backend Kết nối thông qua tên dịch vụ nội bộ (DNS) hoặc IP nội bộ Cập nhật Task Definition của Backend\nThêm biến môi trường: SPRING_DATASOURCE_URL SPRING_DATASOURCE_USERNAME SPRING_DATASOURCE_PASSWORD Nếu dùng RDS: lấy endpoint từ RDS console Nếu dùng MySQL container: dùng tên service nội bộ hoặc IP "
+	"content": "title: \u0026ldquo;Kết nối với Amazon RDS hoặc container MySQL\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 6 chapter: false pre: \u0026quot; 1.6 \u0026quot; Tùy chọn 1: Kết nối với Amazon RDS (MySQL được quản lý)\nMở Amazon RDS Console Chọn Create database → chọn Standard Create Engine: MySQL (phiên bản mới nhất) Cấu hình cơ bản: DB instance identifier: my-rds-instance Tên đăng nhập \u0026amp; mật khẩu Bật Public access Cổng kết nối: 3306 Trong phần Connectivity: Chọn đúng VPC và subnet group Thêm hoặc tạo mới Security Group cho phép truy cập cổng 3306 Tùy chọn 2: Sử dụng container MySQL trong ECS Cluster\nTạo mới một Task Definition: Image: mysql:8 Environment variables: MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD Chạy task trong cùng VPC \u0026amp; subnet với backend Kết nối thông qua tên dịch vụ nội bộ (DNS) hoặc IP nội bộ Cập nhật Task Definition của Backend\nThêm biến môi trường: SPRING_DATASOURCE_URL SPRING_DATASOURCE_USERNAME SPRING_DATASOURCE_PASSWORD Nếu dùng RDS: lấy endpoint từ RDS console Nếu dùng MySQL container: dùng tên service nội bộ hoặc IP "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "title: \u0026ldquo;Tự động Build Docker và Triển khai lên ECS\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 2 chapter: false pre: \u0026quot; 4.2 \u0026quot; Tạo file .github/workflows/docker-ecs-deploy.yml trong repository backend\nWorkflow này sẽ tự động build image Docker và triển khai lên ECS mỗi khi có push lên nhánh main. name: Docker Build \u0026amp; Deploy to ECS on: push: branches: [main] jobs: deploy: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v3 - name: Set up Docker Buildx uses: docker/setup-buildx-action@v2 - name: Authenticate to Amazon ECR uses: aws-actions/amazon-ecr-login@v1 - name: Build và push Docker image lên ECR run: | docker build -t ${{ secrets.ECR_REPO }} . docker tag ${{ secrets.ECR_REPO }}:latest ${{ secrets.ECR_URI }} docker push ${{ secrets.ECR_URI }} - name: Triển khai image mới lên ECS uses: aws-actions/amazon-ecs-deploy-task-definition@v1 with: task-definition: ecs-task-def.json service: your-ecs-service cluster: your-ecs-cluster wait-for-service-stability: true Các GitHub Secrets cần thiết\nECR_REPO ECR_URI AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY Và các biến môi trường khác nếu có sử dụng trong workflow "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "title: \u0026ldquo;Bật CloudWatch Logs cho ECS và API Gateway\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 3 chapter: false pre: \u0026quot; 4.3 \u0026quot; Bật CloudWatch Logs cho ECS Task\nTrong quá trình tạo ECS Task Definition: Mở phần Log configuration. Chọn awslogs làm log driver. Nhập: Log group: /ecs/springboot-backend Region: ap-northeast-1 Stream prefix: ecs ECS sẽ tự động gửi log của container lên CloudWatch. Bật CloudWatch Logs cho API Gateway\nTruy cập API Gateway Console, chọn API bạn đã tạo. Vào mục Stages → chọn stage đang sử dụng (ví dụ: prod). Vào tab Logs/Tracing: Bật CloudWatch Logs. Chọn Log level là INFO hoặc ERROR. Có thể bật thêm Log full requests/responses data để log chi tiết hơn. Xem log trong CloudWatch\nTruy cập CloudWatch Console. Vào Log groups → tìm theo tên log group đã tạo. Click để xem log theo thời gian thực. "
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/",
 	"title": "",
 	"tags": [],
 	"description": "",
 	"content": "title: \u0026ldquo;Tạo CloudWatch Alarm để Giám sát\u0026rdquo; date: \u0026ldquo;2025-07-17\u0026rdquo; weight: 4 chapter: false pre: \u0026quot; 4.4 \u0026quot; Chúng tôi đã thiết lập các cảnh báo CloudWatch để giám sát tình trạng hệ thống, tập trung vào hiệu năng ECS và lỗi từ API Gateway.\nGiám sát ECS Service (CPU \u0026amp; Bộ nhớ)\nTruy cập CloudWatch Console. Vào Alarms → Create Alarm. Chọn ECS Metrics, sau đó chọn CPUUtilization và MemoryUtilization cho service backend. Thiết lập các điều kiện sau: Ngưỡng: \u0026gt;= 70% Thời gian: 5 phút Số lần liên tiếp: 3 Thêm hành động thông báo qua SNS. Giám sát lỗi API Gateway\nChọn các metric 5XXError và Latency trong mục API Gateway Metrics. Đặt ngưỡng cảnh báo (ví dụ: hơn 10 lỗi trong 5 phút). Thêm tên cảnh báo và kênh thông báo qua SNS. Các cảnh báo đã được tạo và kiểm tra thành công. Hệ thống hiện sẽ gửi thông báo khi xảy ra lỗi hoặc vượt ngưỡng hiệu suất cho phép.\n"
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/categories/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/tags/",
+	"uri": "https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on Create a new AWS account.</title>
-    <link>http://localhost:1313/CapLeHuuTan_WorkShop/</link>
+    <link>https://captan2003.github.io/CapLeHuuTan_WorkShop/</link>
     <description>Recent content in Home on Create a new AWS account.</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/CapLeHuuTan_WorkShop/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://captan2003.github.io/CapLeHuuTan_WorkShop/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

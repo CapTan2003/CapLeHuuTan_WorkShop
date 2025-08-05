@@ -22,7 +22,7 @@ pre: " <b> 2.1 </b> "
 
 - **Build ứng dụng ở chế độ production**
 
-    - Sử dụng lệnh sau để build frontend (React, Vue, v.v):
+    - Sử dụng lệnh sau để build frontend (React, Vue, Vite, v.v.):
 
     ```bash
     npm run build
@@ -30,13 +30,13 @@ pre: " <b> 2.1 </b> "
 
     - Thư mục đầu ra thường là `build/` (React) hoặc `dist/` (Vue, Vite)
 
-    - Kết quả là một tập hợp các file HTML, JS, CSS đã được đóng gói sẵn sàng để upload lên S3
+    - Kết quả là một tập hợp các file HTML, JS, CSS đã được đóng gói, sẵn sàng để upload lên S3
 
     ![image.png](/images/deploy_frontend/build_output.png)
 
 - **Kiểm tra thư mục build**
 
-    - Kiểm tra thư mục đầu ra sau khi build có chứa các file như `index.html`, `main.js`, `style.css`, v.v:
+    - Kiểm tra thư mục đầu ra có chứa các file như `index.html`, `main.js`, `style.css`, v.v.:
 
     ```bash
     ls build
@@ -48,4 +48,36 @@ pre: " <b> 2.1 </b> "
     ls dist
     ```
 
-    - Nếu có đầy đủ file, bạn đã sẵn sàng để chuyển sang bước tiếp theo: upload lên S3 và phân phối qua CloudFront
+- **Xem thử ứng dụng trên trình duyệt (tùy chọn)**
+
+    - Cài công cụ `serve` nếu chưa có:
+
+    ```bash
+    npm install -g serve
+    ```
+
+    - Chạy thử ứng dụng React:
+
+    ```bash
+    serve -s build
+    ```
+
+    - Hoặc với Vue/Vite:
+
+    ```bash
+    serve -s dist
+    ```
+
+    - Sau đó mở trình duyệt và truy cập địa chỉ:
+
+    ```
+    http://localhost:3000
+    ```
+
+    - Nếu dùng Windows, có thể tự động mở trình duyệt bằng lệnh:
+
+    ```bash
+    start http://localhost:3000
+    ```
+
+- ✅ Nếu mọi thứ hiển thị đúng, bạn có thể chuyển sang bước tiếp theo: upload lên S3 và phân phối qua CloudFront.

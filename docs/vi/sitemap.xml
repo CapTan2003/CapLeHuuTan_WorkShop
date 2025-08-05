@@ -2,336 +2,349 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/1-build-frontend-app/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/1-create-http-api/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/1-provision-rds-database/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-provision-rds-database/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/1-create-http-api/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/1-create-ecr-push-image/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/1-create-http-api/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/1-setup-github-actions/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/1-setup-github-actions/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/1-setup-github-actions/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-task-definition/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/2-create-task-definition/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-task-definition/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/2-create-ecr-push-image/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/2-create-s3-hosting/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/2-integrate-api-with-alb/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/3-setup-ssl-acm/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/3-create-cloudfront-distribution/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-fargate-service/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-task-definition/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/3-create-fargate-service/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/3-create-task-definition/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-fargate-service/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/3-create-task-definition/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/3-setup-api-gateway-custom-domain/4-map-domain-with-route53/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/4-configure-cors-cache-error/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-fargate-service/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/4-create-fargate-service/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-alb-for-backend/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/4-create-fargate-service/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/2-deploy-frontend-s3-cloudfront/5-upload-to-s3/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/</loc>
     <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-configure-vpc-sg-for-ecs/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-create-alb-for-backend/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/</loc>
+    <lastmod>2025-07-17T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/5-connect-rds-or-container/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/7-configure-vpc-sg-for-ecs/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/1-deploy-backend-ecs-fargate/6-connect-rds-or-container/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/2-automate-docker-build-deploy/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/3-enable-cloudwatch-logs/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/categories/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/categories/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/categories/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/4-ci-cd-and-monitoring/4-create-cloudwatch-alarms/"
                 />
   </url><url>
-    <loc>http://localhost:1313/CapLeHuuTan_WorkShop/vi/tags/</loc>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/tags/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="http://localhost:1313/CapLeHuuTan_WorkShop/vi/tags/"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/categories/"
+                />
+  </url><url>
+    <loc>https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://captan2003.github.io/CapLeHuuTan_WorkShop/vi/tags/"
                 />
   </url>
 </urlset>

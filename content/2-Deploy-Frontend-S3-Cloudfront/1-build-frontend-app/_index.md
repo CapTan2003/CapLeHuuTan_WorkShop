@@ -22,7 +22,7 @@ pre: " <b> 2.1 </b> "
 
 - **Build the application for production**
 
-    - Run the following command to build your frontend (React, Vue, etc.):
+    - Run the following command to build your frontend (React, Vue, Vite, etc.):
 
     ```bash
     npm run build
@@ -48,4 +48,36 @@ pre: " <b> 2.1 </b> "
     ls dist
     ```
 
-    - If the files are present, you're ready to move to the next step: upload to S3 and serve via CloudFront
+- **Preview the production build locally (optional)**
+
+    - Install `serve` globally if not already:
+
+    ```bash
+    npm install -g serve
+    ```
+
+    - Run the production build locally (React example):
+
+    ```bash
+    serve -s build
+    ```
+
+    - For Vue/Vite, replace `build` with `dist`:
+
+    ```bash
+    serve -s dist
+    ```
+
+    - Then open your browser and go to:
+
+    ```txt
+    http://localhost:3000
+    ```
+
+    - (Optional) On Windows, you can auto-open the browser with:
+
+    ```bash
+    start http://localhost:3000
+    ```
+
+- ✅ If everything looks correct, you're ready to move to the next step: upload to S3 and serve via CloudFront.
