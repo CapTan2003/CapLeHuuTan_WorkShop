@@ -1,23 +1,28 @@
-# Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 publishDir = "docs"
 baseURL = "https://captan2003.github.io/CapLeHuuTan_WorkShop/"
+staticDir = ["static"]
 
-# For search functionality
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "static/images"
+    target = "static/images"
+
 [outputs]
-home = [ "HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON"]
 
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = "workshop"
-  # Git hub repo link
   editURL = ""
   description = ""
   author = "journeyoftheaverageguy@gmail.com"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
-  
+
 [Languages]
 [Languages.en]
 title = "Create a new AWS account."
@@ -52,4 +57,3 @@ name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
-

@@ -6,65 +6,74 @@ chapter: false
 ---
 
 # Triển khai ứng dụng web tách biệt trên AWS  
-## Frontend + Backend với các thực hành tốt nhất
+## Frontend + Backend sử dụng CDN Behavior
 
 #### Tổng quan
 
-Workshop này hướng dẫn bạn triển khai một ứng dụng web hiện đại theo kiến trúc tách biệt (decoupled) trên AWS, tuân theo các thực hành tốt nhất trong kiến trúc điện toán đám mây.  
-Hệ thống gồm frontend (**React SPA lưu trữ trên S3 và phân phối qua CloudFront**) và backend container hóa (**Spring Boot chạy trên ECS Fargate sau ALB**).  
-**Amazon API Gateway** điều phối luồng yêu cầu, backend kết nối đến cơ sở dữ liệu **MySQL được quản lý bởi Amazon RDS**.  
-Chúng ta cũng tích hợp CI/CD pipelines và giám sát với CloudWatch.
+Workshop này hướng dẫn triển khai một ứng dụng web hiện đại theo kiến trúc tách biệt (**Decoupled Architecture**) trên AWS.  
+Hệ thống bao gồm **Frontend** (React SPA lưu trữ trên S3 và phân phối qua CloudFront) và **Backend** (Spring Boot container hóa chạy trên ECS Fargate sau Application Load Balancer, sử dụng MySQL trên Amazon RDS).  
+Toàn bộ traffic được điều hướng qua **CloudFront Behavior** cho cả frontend và backend, không yêu cầu cài đặt chứng chỉ SSL riêng cho backend.
 
 #### Công nghệ sử dụng
 
-Dự án bao gồm cả phần frontend và backend:
-
-- **Frontend**: React SPA  
+- **Frontend**  
+  - React SPA  
   - Lưu trữ trên **Amazon S3**  
-  - Phân phối qua **Amazon CloudFront**
+  - Phân phối qua **Amazon CloudFront**  
 
-- **Backend**: Java Spring Boot API  
+- **Backend**  
+  - Java Spring Boot API  
   - Container hóa bằng **Docker**  
-  - Chạy trên **ECS Fargate** phía sau **Application Load Balancer**
+  - Chạy trên **ECS Fargate**  
+  - Sau **Application Load Balancer**  
+  - **Auto Scaling** dựa trên CPU/Memory  
 
-- **Cơ sở dữ liệu**: Amazon RDS (MySQL)
+- **Cơ sở dữ liệu**  
+  - **Amazon RDS** (MySQL)
 
-- **Công cụ hạ tầng**:  
-  - AWS CLI, IAM, VPC, Route53, Certificate Manager  
-  - GitHub Actions để triển khai tự động  
-  - CloudWatch để ghi log và thiết lập cảnh báo
+- **Công cụ hạ tầng**  
+  - AWS CLI, IAM  
+  - CloudWatch để giám sát và ghi log  
 
 ---
 
 #### Các module
 
-1. **Triển khai Backend với ECS Fargate**
-   - Tạo repo ECR và push image backend
-   - Khai báo ECS Task Definition và Fargate Service
-   - Thiết lập Application Load Balancer
-   - Kết nối đến RDS hoặc dùng container MySQL
+1. **Set up môi trường AWS CLI & IAM**
+   - Tạo IAM user với quyền cần thiết
+   - Cấu hình AWS CLI để đăng nhập vào tài khoản AWS
 
-2. **Triển khai Frontend với S3 và CloudFront**
-   - Build ứng dụng React
-   - Upload vào S3 bucket
-   - Tạo phân phối CloudFront
-   - Cấu hình cache và chính sách CORS
+2. **Triển khai Backend với ECS Fargate**
+   - Tạo Amazon RDS MySQL
+   - Build Docker image backend và push lên ECR
+   - Khai báo ECS Task Definition
+   - Tạo ECS Cluster và Service (kèm ALB, Target Group, Auto Scaling)
 
-3. **Cấu hình API Gateway và domain tùy chỉnh**
-   - Tạo HTTP API với Amazon API Gateway
-   - Điều hướng traffic đến ALB backend
-   - Cài đặt SSL với ACM và ánh xạ tên miền với Route53
+3. **Triển khai Frontend với S3 và CloudFront**
+   - Tạo & cấu hình S3 bucket để lưu trữ file build của dự án
+   - Build dự án React (production) và upload build lên S3
+   - Tạo CloudFront Distribution
+   - Khởi tạo Origin cho:
+     - Origin 1: Frontend (S3 Bucket)
+     - Origin 2: Backend (Application Load Balancer)
 
-4. **CI/CD và giám sát**
-   - Cấu hình GitHub Actions cho frontend và backend
-   - Tự động build và triển khai
-   - Bật logging và cảnh báo với CloudWatch
+4. **Cấu hình Behavior của CloudFront**
+   - **Behavior cho từng origin**:
+     - FE: `/`, `/static/*`, `/*.js`, `/*.css` → S3 origin
+     - BE: `/api/*` → ALB origin
+   - **Cấu hình CORS policy**:
+     - Cho phép domain frontend truy cập API backend
+
+---
+### Kiến trúc hệ thống
+
+![Kiến trúc hệ thống](/images/kientruc.png)
 
 ---
 
 #### Nội dung chính
 
-1. [1. Triển khai Backend với ECS Fargate](1-deploy-backend-ecs-fargate/)
-2. [2. Triển khai Frontend với S3 và CloudFront](2-deploy-frontend-s3-cloudfront/)
-3. [3. Cấu hình API Gateway và domain tùy chỉnh](3-setup-api-gateway-custom-domain/)
-4. [4. CI/CD và giám sát](4-ci-cd-and-monitoring/)
+1. [1. Set up môi trường AWS CLI & IAM](1-setup-aws-cli-iam/)
+2. [2. Triển khai Backend với ECS Fargate](2-deploy-backend-ecs-fargate/)
+3. [3. Triển khai Frontend với S3 và CloudFront](3-deploy-frontend-s3-cloudfront/)
+4. [4. Cấu hình Behavior của CloudFront](4-configure-cloudfront-behavior/)
