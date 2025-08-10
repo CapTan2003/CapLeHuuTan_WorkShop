@@ -6,51 +6,42 @@ chapter: false
 pre: " <b> 1.3 </b> "
 ---
 
-## Cấu hình AWS CLI trên máy của bạn
+- **Cài đặt AWS CLI (nếu chưa có)**
 
-Sau khi tạo access keys cho IAM user, bạn cần cấu hình AWS CLI trên máy local để xác thực và tương tác với các dịch vụ AWS.
+    - Tải và cài đặt AWS CLI từ [hướng dẫn cài đặt chính thức](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+    - Kiểm tra cài đặt bằng cách chạy:
+      ```bash
+      aws --version
+      ```
 
----
+    ![image.png](/images/01/3/1.png)
 
-### **1. Cài đặt AWS CLI (nếu chưa có)**
+- **Mở Terminal và chạy AWS Configure**
 
-- Tải và cài đặt AWS CLI từ [hướng dẫn cài đặt chính thức](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
-- Kiểm tra cài đặt bằng cách chạy `aws --version` trong terminal.
+    - Mở **Terminal** (macOS/Linux) hoặc **Command Prompt** (Windows).
+    - Chạy lệnh:
+      ```bash
+      aws configure
+      ```
 
-![image.png](/images/01/3/1.png)
+    ![image.png](/images/01/3/2.png)
 
----
+- **Nhập thông tin xác thực AWS**
 
-### **2. Mở Terminal và chạy AWS Configure**
+    - **AWS Access Key ID**: Nhập Access Key ID từ bước trước.
+    - **AWS Secret Access Key**: Nhập Secret Access Key đã lưu.
+    - **Default region name**: Nhập region ưa thích (ví dụ: `ap-southeast-2`).
+    - **Default output format**: Nhập `json` (khuyến nghị).
 
-- Mở Terminal (macOS/Linux) hoặc Command Prompt (Windows).
-- Chạy lệnh sau:
-```bash
-aws configure
-```
+    ![image.png](/images/01/3/3.png)
 
-![image.png](/images/01/3/2.png)
+- **Xác minh cấu hình AWS CLI**
 
----
+    - Kiểm tra cấu hình bằng cách chạy:
+      ```bash
+      aws sts get-caller-identity
+      ```
+    - Bạn sẽ thấy kết quả hiển thị **UserID**, **Account** và **ARN**.
+    - Điều này xác nhận AWS CLI đã được cấu hình và xác thực thành công.
 
-### **3. Nhập thông tin xác thực AWS**
-
-- **AWS Access Key ID**: Nhập Access Key ID từ bước trước.
-- **AWS Secret Access Key**: Nhập Secret Access Key đã lưu.
-- **Default region name**: Nhập region ưa thích (ví dụ: `ap-southeast-2`).
-- **Default output format**: Nhập `json` (khuyến nghị).
-
-![image.png](/images/01/3/3.png)
-
----
-
-### **4. Xác minh cấu hình AWS CLI**
-
-- Kiểm tra cấu hình bằng cách chạy:
-```bash
-aws sts get-caller-identity
-```
-- Bạn sẽ thấy kết quả hiển thị UserID, Account và ARN.
-- Điều này xác nhận AWS CLI đã được cấu hình và xác thực thành công.
-
-![image.png](/images/01/3/4.png)
+    ![image.png](/images/01/3/4.png)
