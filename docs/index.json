@@ -1,139 +1,139 @@
 [
 {
-	"uri": "//:1313/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/",
 	"title": "Create ECR Repository and Push Docker Image",
 	"tags": [],
 	"description": "",
 	"content": " Open Amazon ECR service\nGo to the Amazon ECR dashboard. Click Create repository. Configure repository settings\nVisibility settings: Select Private. Repository name: h2t/backend. Tag immutability: Select Mutable. Configure encryption settings\nEncryption type: AES-256 (default). Optionally, select AWS KMS if you require a customer-managed key. Create repository\nClick Create repository. After creation, note the repository URI: 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend View push commands\nIn the repository detail page, click View push commands. AWS will display the commands for: Authentication Building the Docker image Tagging the image Pushing the image Authenticate Docker to ECR\naws ecr get-login-password --region ap-southeast-2 \\ | docker login --username AWS \\ --password-stdin 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com Build Docker image\ndocker build -t h2t/backend . Tag Docker image\ndocker tag h2t/backend:latest \\ 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend:latest Push Docker image to ECR\ndocker push 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend:latest "
 },
 {
-	"uri": "//:1313/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/",
 	"title": "Create &amp; Configure S3 Bucket for Hosting",
 	"tags": [],
 	"description": "",
 	"content": " Open Amazon S3 service\nGo to the Amazon S3 dashboard. Click Create bucket. General configuration\nAWS Region: Select your preferred region (e.g., Asia Pacific (Sydney) ap-southeast-2). Bucket name: Enter a unique bucket name (e.g., h2t). Object Ownership\nChoose ACLs disabled (recommended) to enforce bucket owner control. Block Public Access settings\nUncheck Block all public access so the bucket can be used for static website hosting. Acknowledge the warning about making the bucket public. Default encryption\nKeep the default Server-side encryption with Amazon S3 managed keys (SSE-S3). Create bucket\nClick Create bucket to finish setup. Edit Bucket Permissions\nGo to the Permissions tab. Under Block public access (bucket settings), make sure it is Off. In Bucket policy, click Edit and add the following policy: { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Sid\u0026#34;: \u0026#34;PublicReadGetObject\u0026#34;, \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: \u0026#34;*\u0026#34;, \u0026#34;Action\u0026#34;: \u0026#34;s3:GetObject\u0026#34;, \u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::h2t/*\u0026#34; } ] } Save changes\nClick Save changes to apply the bucket policy. "
 },
 {
-	"uri": "//:1313/4-configure-cloudfront-behavior/1-create-api-behavior/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-configure-cloudfront-behavior/1-create-api-behavior/",
 	"title": "Create Behavior for backend",
 	"tags": [],
 	"description": "",
 	"content": " Open Behaviors tab\nGo to the CloudFront distribution you created. Select the Behaviors tab. By default, there is a Default behavior pointing to S3. Click Create behavior to add a new rule. Enter Behavior details\nPath pattern: /api/* (to route API requests). Origin or origin groups: select backend origin (ALB). Compress objects automatically: choose Yes. Viewer protocol policy: Redirect HTTP to HTTPS. Allowed HTTP methods: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE. Configure policy\nOrigin request policy: choose AllViewer (to forward all request headers/params/body). No Response headers policy configuration at this step. Leave Function associations empty. Create Behavior\nClick Create behavior to save. The /api/* behavior is now added and will take priority over the Default behavior. "
 },
 {
-	"uri": "//:1313/1-setup-aws-cli-iam/1-create-iam-user/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-setup-aws-cli-iam/1-create-iam-user/",
 	"title": "Create IAM User for S3 &amp; ECR Access",
 	"tags": [],
 	"description": "",
 	"content": " Open IAM Users page\nGo to the IAM dashboard. In the left menu, under Access management, click Users. Click Create user. Specify user details\nIn User name, enter: dev-h2t. Do not check Provide user access to the AWS Management Console (only programmatic access is needed). Click Next. Attach permissions – AmazonS3FullAccess\nChoose Attach policies directly. Search and select the policy: AmazonS3FullAccess. Attach permissions – AmazonEC2ContainerRegistryFullAccess\nContinue searching and select the policy: AmazonEC2ContainerRegistryFullAccess. Click Next. Review and create\nVerify the details: User name: dev-h2t Permissions: AmazonS3FullAccess, AmazonEC2ContainerRegistryFullAccess Click Create user. "
 },
 {
-	"uri": "//:1313/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/",
 	"title": "Home",
 	"tags": [],
 	"description": "",
 	"content": "Deploying a Decoupled Web Application on AWS Frontend + Backend using CDN Behavior Overview This workshop demonstrates how to deploy a modern decoupled web application (Decoupled Architecture) on AWS.\nThe system consists of a Frontend (React SPA hosted on S3 and delivered via CloudFront) and a Backend (Spring Boot container running on ECS Fargate behind an Application Load Balancer, using MySQL on Amazon RDS).\nAll traffic is routed through CloudFront Behaviors for both frontend and backend, eliminating the need for a separate SSL certificate on the backend.\nTechnology Used Frontend\nReact SPA Hosted on Amazon S3 Delivered via Amazon CloudFront Backend\nJava Spring Boot API Containerized with Docker Runs on ECS Fargate Behind Application Load Balancer Auto Scaling based on CPU/Memory usage Database\nAmazon RDS (MySQL) Infrastructure Tools\nAWS CLI, IAM Modules Set up AWS CLI \u0026amp; IAM\nCreate an IAM user with necessary permissions Configure AWS CLI to log in to your AWS account Deploy Backend with ECS Fargate\nCreate Amazon RDS MySQL Build backend Docker image and push to ECR Define ECS Task Definition Create ECS Cluster and Service (with ALB, Target Group, Auto Scaling) Deploy Frontend with S3 and CloudFront\nCreate \u0026amp; configure S3 bucket for storing the project build files Build the React project (production) and upload build files to S3 Create CloudFront Distribution Set up Origins: Origin 1: Frontend (S3 Bucket) Origin 2: Backend (Application Load Balancer) Configure CloudFront Behavior\nBehavior for each origin: FE: /, /static/*, /*.js, /*.css → S3 origin BE: /api/* → ALB origin CORS policy configuration: Allow the frontend domain to access backend APIs Architecture Content 1. Set up AWS CLI \u0026amp; IAM 2. Deploy Backend with ECS Fargate 3. Deploy Frontend with S3 and CloudFront 4. Configure CloudFront Behavior "
 },
 {
-	"uri": "//:1313/2-deploy-backend-ecs-fargate/1-provision-rds-database/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/1-provision-rds-database/",
 	"title": "Provision RDS Database (MySQL)",
 	"tags": [],
 	"description": "",
 	"content": " Open Amazon RDS service\nGo to the Amazon RDS dashboard. Click Create database. Choose database creation method and engine\nDatabase creation method: Select Easy create. Engine type: Select MySQL. Set DB instance identifier and username\nDB instance size: Select Free tier (db.t4g.micro). DB instance identifier: study-english. Master username: admin. Configure password and connection\nCredentials management: Choose Self managed. Enable Auto generate password. EC2 connection: Choose Don\u0026rsquo;t connect to an EC2 compute resource. Review default settings and create database\nKeep default settings for Easy create. Click Create database. Save connection credentials\nCopy and save the generated master password (this is the only time you can view it). Wait for database creation\nStatus will show Creating for a few minutes. Get RDS endpoint\nGo to Connectivity \u0026amp; security tab. Copy the Endpoint and note the Port (3306). Check security group\nIn the VPC security groups section, click the linked security group. View inbound rules\nEnsure port 3306 is allowed for inbound traffic. Edit inbound rules\nAdd a new rule: Type: Custom TCP Port range: 3306 Source: 0.0.0.0/0 (for testing; restrict for production) Click Save rules. Connect to RDS using MySQL Workbench\nConnection Name: RDS study-english Hostname: RDS endpoint Port: 3306 Username: admin Password: your saved master password Verify connection and manage database\nOnce connected, you can create tables, insert data, and run queries. "
 },
 {
-	"uri": "//:1313/1-setup-aws-cli-iam/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-setup-aws-cli-iam/",
 	"title": "Set up AWS CLI &amp; IAM",
 	"tags": [],
 	"description": "",
 	"content": "Before deploying, prepare your credentials and CLI access:\nCreate IAM User for S3 \u0026amp; ECR Access\u0026quot; Create access keys for the IAM user Configure AWS CLI on your machine "
 },
 {
-	"uri": "//:1313/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/",
 	"title": "Build &amp; Upload Frontend App to S3",
 	"tags": [],
 	"description": "",
 	"content": " Configure API endpoint using /api\nIn the API client configuration file (e.g., src/services/apiClient.ts), set the BASE_URL to /api: const BASE_URL = \u0026#34;/api\u0026#34;; Reason:\nWhen deploying with CloudFront Behaviors, both frontend and backend share the same CDN domain.\nCloudFront routing rules will work as follows:\nRequests starting with /api → forwarded to the backend (ECS/ALB). All other requests → served from S3 static files. This allows the frontend to call the backend without specifying a separate backend domain, avoiding CORS issues.\nBuild the frontend\nOpen terminal and run: npm run build Build complete\nAfter build, the build folder will contain all production-ready static files. Upload build to S3\nUse AWS CLI to sync the build folder to your S3 bucket: aws s3 sync ./build s3://your-bucket-name --delete The --delete flag removes old files in the bucket that are not present in the new build. Upload complete\nAll static assets of the application are now available in your S3 bucket. "
 },
 {
-	"uri": "//:1313/1-setup-aws-cli-iam/2-create-access-keys/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-setup-aws-cli-iam/2-create-access-keys/",
 	"title": "Create access keys for the IAM user",
 	"tags": [],
 	"description": "",
 	"content": "Create access keys for the IAM user Follow the steps below to create access keys for the IAM user you created in the previous step.\n1. Open IAM Users page Go to the IAM dashboard. In the left menu, click Users. Select the user you created (e.g., dev-h2t). 2. Create an Access Key In the user details page, go to the Security credentials tab. In the Access keys section, click Create access key. 3. Choose access key type Select Command Line Interface (CLI). Check the confirmation box: I understand the above recommendation… Click Next. 4. Generate and save Access Key Click Create access key. Copy the Access key and Secret access key to a .csv file or save securely. Note: Once you close the window, you cannot view the Secret access key again. "
 },
 {
-	"uri": "//:1313/2-deploy-backend-ecs-fargate/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/",
 	"title": "Deploy Backend with ECS Fargate",
 	"tags": [],
 	"description": "",
 	"content": "To deploy the backend with ECS Fargate, follow these step-by-step guides:\nProvision Amazon RDS (MySQL) Create ECR repository and push Docker image Create ECS Task Definition for backend container Create ECS Cluster Create ECS Fargate Service (with ALB, Target Group, Auto Scaling) "
 },
 {
-	"uri": "//:1313/4-configure-cloudfront-behavior/2-set-default-root-object/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-configure-cloudfront-behavior/2-set-default-root-object/",
 	"title": "Set Default Root Object &amp; Test",
 	"tags": [],
 	"description": "",
 	"content": " Go to General tab\nClick Edit. In Default root object field, enter index.html. Keep other settings unchanged. Click Save changes. Confirm update success\nA green notification appears: Successfully updated distribution settings. Default root object is now set to index.html. Test frontend access\nOpen the Distribution domain name of CloudFront. The frontend web interface is displayed. Test other pages\nAccess other frontend pages (e.g., /lesson/readings) to ensure SPA loads correctly. "
 },
 {
-	"uri": "//:1313/2-deploy-backend-ecs-fargate/3-create-task-definition/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/3-create-task-definition/",
 	"title": "Create ECS Task Definition for Backend Container",
 	"tags": [],
 	"description": "",
 	"content": " Open Amazon ECS service\nGo to the Amazon ECS dashboard. On the main page, click Get started to begin deploying a containerized application. Access Task Definitions\nIn the left menu, select Task definitions. Click Create new task definition to start. Configure Task Definition\nTask definition family: h2t-backend-task. Launch type: Select AWS Fargate. Operating system/Architecture: Linux/X86_64. Network mode: awsvpc. Set Task Size and Roles\nCPU: 1 vCPU. Memory: 3 GB. Task role: Leave blank. Task execution role: Select Create new role. Configure Container Details\nName: h2t-backend. Image URI: 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend:latest Container port: 8080. Protocol: TCP. App protocol: HTTP. Configure Storage \u0026amp; Monitoring (optional)\nVolumes: Add volumes if needed. Monitoring: Optionally enable AWS Distro for OpenTelemetry. Tags: Add tags to organize resources. Click Create to finish. Verify Task Definition Creation\nGreen notification: Task definition successfully created. Task h2t-backend-task:1 has been created. ARN: arn:aws:ecs:ap-southeast-2:740994884477:task-definition/h2t-backend-task:1 Status: ACTIVE. Launch type: Fargate. Network mode: awsvpc. "
 },
 {
-	"uri": "//:1313/1-setup-aws-cli-iam/3-configure-aws-cli/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/1-setup-aws-cli-iam/3-configure-aws-cli/",
 	"title": "Configure AWS CLI on your machine",
 	"tags": [],
 	"description": "",
 	"content": "Configure AWS CLI on your machine After creating access keys for your IAM user, you need to configure AWS CLI on your local machine to authenticate and interact with AWS services.\n1. Install AWS CLI (if not already installed) Download and install AWS CLI from the official installation guide. Verify installation by running aws --version in your terminal. 2. Open Terminal and run AWS Configure Open Terminal (macOS/Linux) or Command Prompt (Windows). Run the following command: aws configure 3. Enter your AWS credentials AWS Access Key ID: Enter the Access Key ID from the previous step. AWS Secret Access Key: Enter the Secret Access Key you saved. Default region name: Enter your preferred region (e.g., ap-southeast-2). Default output format: Enter json (recommended). 4. Verify AWS CLI configuration Test your configuration by running: aws sts get-caller-identity You should see output showing your UserID, Account, and ARN. This confirms AWS CLI is properly configured and authenticated. "
 },
 {
-	"uri": "//:1313/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/",
 	"title": "Create CloudFront Distribution &amp; Set up Origins",
 	"tags": [],
 	"description": "",
 	"content": " Open CloudFront\nGo to Amazon CloudFront in AWS Console. Click Create a CloudFront distribution. Start distribution setup\nEnter Distribution name: H2T. Select Single website or app. (No custom domain configured at this step.) Click Next. Choose S3 as Frontend Origin\nOrigin type: select Amazon S3. S3 origin: choose your frontend S3 bucket. Origin path: leave blank. Allow CloudFront to access S3 \u0026amp; use default settings\nTick Allow private S3 bucket access to CloudFront. Origin settings: choose Use recommended origin settings. Click Next. Skip WAF\nSelect Do not enable security protections. Click Next. Review \u0026amp; create distribution\nCheck Origin and Cache settings. Click Create distribution. Open Origins tab of the created distribution\nGo to Distributions → Origins. Click Create origin. Add Backend Origin (ALB) – HTTP\nOrigin domain: paste your ALB DNS. Protocol: select HTTP only. HTTP port: 80. Origin path: leave blank. Name: set a name (e.g., backend-alb). Keep HTTP – No TLS configuration\nDo not choose HTTPS, keep HTTP. Origin path: leave blank. Enable Origin Shield: set to No. Complete Origins setup\nConfirm there are 2 origins: S3 (frontend). ALB HTTP (backend). Next step is to configure Behaviors: /api/* → ALB (backend). Default → S3 (frontend). "
 },
 {
-	"uri": "//:1313/3-deploy-frontend-s3-cloudfront/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/3-deploy-frontend-s3-cloudfront/",
 	"title": "Deploy Frontend with S3 and CloudFront",
 	"tags": [],
 	"description": "",
 	"content": "To deploy the frontend (React SPA) using Amazon S3 and Amazon CloudFront, follow these steps:\nCreate \u0026amp; Configure S3 Bucket for Hosting Build \u0026amp; Upload Frontend App to S3 Create CloudFront Distribution \u0026amp; Set up Origins "
 },
 {
-	"uri": "//:1313/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/",
 	"title": "Create ECS Cluster for Backend Container",
 	"tags": [],
 	"description": "",
 	"content": " Open Amazon ECS service\nGo to the Amazon ECS dashboard. In the left menu, select Clusters. Click Create cluster to start a new cluster. Configure cluster basic settings\nCluster name: h2t-backend-cluster. Name must be 1–255 characters; allowed: a–z, A–Z, 0–9, hyphen (-), underscore (_). Optionally expand Service Connect defaults for service-to-service communication. Select infrastructure settings\nInfrastructure: Default is AWS Fargate (serverless) with Fargate and Fargate Spot capacity providers. AWS Fargate: Pay-as-you-go, no infrastructure management. Amazon EC2 instances: Optional, for persistent workloads. External instances (ECS Anywhere): Optional, can be registered later. Configure monitoring \u0026amp; optional settings\nMonitoring: Container Insights (enhanced): Recommended for detailed performance metrics. Container Insights: Basic aggregated metrics. Turned off: Only default CloudWatch metrics. Encryption: Optionally select KMS key for data encryption. Tags: Add tags to organize resources. Click Create to finish. Verify cluster creation\nSuccess message: Cluster h2t-backend-cluster has been created successfully. Click View cluster to see details: Services: 0 Tasks: 0 Container instances: 0 (using Fargate) Monitoring: Container Insights enabled Summary\nECS cluster created with Fargate serverless configuration. Container Insights enabled for monitoring. Ready to deploy ECS services and run tasks using the created task definitions. "
 },
 {
-	"uri": "//:1313/4-configure-cloudfront-behavior/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/4-configure-cloudfront-behavior/",
 	"title": "Configure CloudFront Behavior",
 	"tags": [],
 	"description": "",
 	"content": "To configure CloudFront behaviors for routing requests between Frontend (S3) and Backend (ALB), follow these steps:\nCreate Behavior for backend Set Default Root Object \u0026amp; Test "
 },
 {
-	"uri": "//:1313/2-deploy-backend-ecs-fargate/5-create-fargate-service/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/5-create-fargate-service/",
 	"title": "Create ECS Fargate Service (with ALB, Target Group, Auto Scaling)",
 	"tags": [],
 	"description": "",
 	"content": " Open ECS Cluster\nGo to the Amazon ECS dashboard. Select the cluster h2t-backend-cluster. In the Services tab, click Create to add a new service. Configure Service Details\nTask definition family: h2t-backend-task. Revision: LATEST (or specific revision if required). Service name: h2t-backend-task-service (1–255 chars, a–z, A–Z, 0–9, hyphen, underscore). The service manages running tasks from the selected task definition. Compute Configuration (Advanced)\nExpand Compute configuration (advanced). Capacity provider strategy: FARGATE, Base: 0, Weight: 1. Platform version: LATEST. Deployment Settings\nScheduling strategy: Replica. Desired tasks: 1. Enable Availability Zone rebalancing. Health check grace period: 0. Enable Deployment circuit breaker + Rollback on failures. Networking\nVPC: vpc-024c455ec8b36b307. Subnets: subnet-04c44f964ca628aab (ap-southeast-2b) subnet-07a217da887113ba (ap-southeast-2a) subnet-03b1929fb918c9e69 (ap-southeast-2c) Security group: sg-03aedb5f21ba82193 (h2t-backend-security). Public IP: ON (if internet access required). Load Balancing\nEnable Use load balancing → Application Load Balancer. Container: h2t-backend 8080:8080. Load balancer name: h2t-backend-lb. Listener: Port 80, Protocol HTTP. Target Group\nCreate new target group: Name: h2t-backend-target-group Protocol: HTTP, Port: 8080 Deregistration delay: 300 seconds Health check path: / Service Auto Scaling\nEnable Service auto scaling. Min tasks: 1, Max tasks: 3. Policy type: Target tracking (cpu-tracking). Metric: ECSServiceAverageCPUUtilization, Target: 70%. Cooldown: 300s scale-out / 300s scale-in. Review \u0026amp; Create\nConfirm all settings. Click Create to deploy the service. Verify Service\nIn cluster overview: Services: 1 Active Tasks: 1 Running Status: Active, Strategy: Replica, Auto scaling enabled. "
 },
 {
-	"uri": "//:1313/categories/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//:1313/tags/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

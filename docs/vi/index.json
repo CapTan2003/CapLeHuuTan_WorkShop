@@ -1,139 +1,139 @@
 [
 {
-	"uri": "//:1313/vi/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/",
 	"title": "Tạo ECR Repository và Push Docker Image",
 	"tags": [],
 	"description": "",
 	"content": " Mở dịch vụ Amazon ECR\nTruy cập Amazon ECR dashboard. Nhấp Create repository. Cấu hình repository\nVisibility settings: Chọn Private. Repository name: h2t/backend. Tag immutability: Chọn Mutable. Cấu hình mã hóa\nEncryption type: AES-256 (mặc định). Nếu cần quản lý khóa tùy chỉnh, chọn AWS KMS. Tạo repository\nNhấp Create repository. Sau khi tạo, lưu lại Repository URI: 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend Xem lệnh Push\nTrong trang chi tiết repository, nhấp View push commands. AWS sẽ hiển thị các lệnh bao gồm: Xác thực Build Docker image Tag image Push image Xác thực Docker với ECR\naws ecr get-login-password --region ap-southeast-2 \\ | docker login --username AWS \\ --password-stdin 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com Build Docker image\ndocker build -t h2t/backend . Tag Docker image\ndocker tag h2t/backend:latest \\ 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend:latest Push Docker image lên ECR\ndocker push 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend:latest "
 },
 {
-	"uri": "//:1313/vi/1-setup-aws-cli-iam/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/",
 	"title": "Cài đặt AWS CLI &amp; IAM",
 	"tags": [],
 	"description": "",
 	"content": "Trước khi triển khai, hãy chuẩn bị thông tin đăng nhập và cấu hình CLI:\nTạo IAM User cho S3 \u0026amp; ECR Tạo access keys cho IAM user Cấu hình AWS CLI trên máy của bạn "
 },
 {
-	"uri": "//:1313/vi/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/",
 	"title": "Tạo &amp; Cấu hình S3 Bucket để Hosting",
 	"tags": [],
 	"description": "",
 	"content": " Mở dịch vụ Amazon S3\nTruy cập Amazon S3 dashboard. Nhấn Create bucket. Cấu hình chung (General configuration)\nAWS Region: Chọn vùng triển khai (ví dụ: Asia Pacific (Sydney) ap-southeast-2). Bucket name: Nhập tên bucket duy nhất (ví dụ: h2t). Quyền sở hữu đối tượng (Object Ownership)\nChọn ACLs disabled (recommended) để đảm bảo tất cả các đối tượng thuộc quyền sở hữu của chủ bucket. Cài đặt chặn truy cập công khai (Block Public Access settings)\nBỏ chọn Block all public access để cho phép bucket dùng làm static website hosting. Tick xác nhận I acknowledge\u0026hellip; để chấp nhận cảnh báo bucket sẽ public. Mã hóa mặc định (Default encryption)\nGiữ nguyên mặc định Server-side encryption with Amazon S3 managed keys (SSE-S3). Tạo bucket\nNhấn Create bucket để hoàn tất. Chỉnh sửa quyền bucket (Edit Bucket Permissions)\nVào tab Permissions. Trong phần Block public access (bucket settings), đảm bảo trạng thái là Off. Tại Bucket policy, nhấn Edit và thêm đoạn policy sau: { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Sid\u0026#34;: \u0026#34;PublicReadGetObject\u0026#34;, \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: \u0026#34;*\u0026#34;, \u0026#34;Action\u0026#34;: \u0026#34;s3:GetObject\u0026#34;, \u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::h2t/*\u0026#34; } ] } Lưu thay đổi\nNhấn Save changes để áp dụng policy cho bucket. "
 },
 {
-	"uri": "//:1313/vi/4-configure-cloudfront-behavior/1-create-api-behavior/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/1-create-api-behavior/",
 	"title": "Tạo Behavior cho backend",
 	"tags": [],
 	"description": "",
 	"content": " Mở tab Behaviors\nVào phân phối CloudFront vừa tạo. Chọn tab Behaviors. Mặc định đã có Default behavior trỏ về S3. Nhấn Create behavior để thêm rule mới. Nhập thông tin Behavior\nPath pattern: /api/* (để định tuyến các request API). Origin or origin groups: chọn origin backend (ALB). Compress objects automatically: chọn Yes. Viewer protocol policy: Redirect HTTP to HTTPS. Allowed HTTP methods: GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE. Cấu hình policy\nOrigin request policy: chọn AllViewer (để forward toàn bộ request headers/params/body). Không cấu hình Response headers policy ở bước này. Để trống phần Function associations. Tạo Behavior\nNhấn Create behavior để lưu. Behavior /api/* đã được thêm, sẽ ưu tiên match trước Default behavior. "
 },
 {
-	"uri": "//:1313/vi/2-deploy-backend-ecs-fargate/1-provision-rds-database/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/1-provision-rds-database/",
 	"title": "Tạo Cơ Sở Dữ Liệu RDS (MySQL)",
 	"tags": [],
 	"description": "",
 	"content": " Mở dịch vụ Amazon RDS\nTruy cập Amazon RDS dashboard. Nhấn Create database để bắt đầu tạo cơ sở dữ liệu. Chọn phương thức tạo và loại cơ sở dữ liệu\nDatabase creation method: Chọn Easy create (tạo nhanh). Engine type: Chọn MySQL. Đặt tên cơ sở dữ liệu và tài khoản quản trị\nDB instance size: Chọn Free tier (db.t4g.micro). DB instance identifier: study-english. Master username: admin. Cấu hình mật khẩu và kết nối\nCredentials management: Chọn Self managed. Bật Auto generate password để AWS tự tạo mật khẩu. EC2 connection: Chọn Don\u0026rsquo;t connect to an EC2 compute resource. Xem lại cấu hình mặc định và tạo cơ sở dữ liệu\nGiữ nguyên các thiết lập mặc định của Easy create. Nhấn Create database. Lưu thông tin đăng nhập\nSao chép và lưu mật khẩu quản trị (đây là lần duy nhất có thể xem lại). Chờ cơ sở dữ liệu được khởi tạo\nTrạng thái sẽ hiển thị Creating trong vài phút. Lấy endpoint của RDS\nChuyển sang tab Connectivity \u0026amp; security. Sao chép Endpoint và ghi lại Port (3306). Kiểm tra Security Group\nTrong mục VPC security groups, nhấn vào liên kết của security group đang dùng. Xem quy tắc inbound\nĐảm bảo port 3306 đã được mở cho inbound traffic. Chỉnh sửa quy tắc inbound\nThêm một quy tắc mới: Type: Custom TCP Port range: 3306 Source: 0.0.0.0/0 (dùng cho thử nghiệm; cần giới hạn IP khi triển khai thật) Nhấn Save rules. Kết nối tới RDS bằng MySQL Workbench\nConnection Name: RDS study-english Hostname: endpoint của RDS Port: 3306 Username: admin Password: mật khẩu đã lưu ở bước trước Xác nhận kết nối và quản lý cơ sở dữ liệu\nSau khi kết nối thành công, bạn có thể tạo bảng, thêm dữ liệu và chạy truy vấn. "
 },
 {
-	"uri": "//:1313/vi/1-setup-aws-cli-iam/1-create-iam-user/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/1-create-iam-user/",
 	"title": "Tạo IAM User cho S3 &amp; ECR",
 	"tags": [],
 	"description": "",
 	"content": " Mở trang IAM Users\nTruy cập IAM dashboard. Trong menu bên trái, dưới mục Access management, chọn Users. Nhấn Create user. Nhập thông tin người dùng\nỞ mục User name, nhập: dev-h2t. Không tick chọn Provide user access to the AWS Management Console (chỉ cần quyền truy cập programmatic). Nhấn Next. Gán quyền – AmazonS3FullAccess\nChọn Attach policies directly. Tìm và chọn quyền: AmazonS3FullAccess. Gán quyền – AmazonEC2ContainerRegistryFullAccess\nTiếp tục tìm và chọn quyền: AmazonEC2ContainerRegistryFullAccess. Nhấn Next. Xác nhận và tạo\nKiểm tra lại thông tin: User name: dev-h2t Permissions: AmazonS3FullAccess, AmazonEC2ContainerRegistryFullAccess Nhấn Create user. "
 },
 {
-	"uri": "//:1313/vi/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/",
 	"title": "Trang chủ",
 	"tags": [],
 	"description": "",
 	"content": "Triển khai ứng dụng web tách biệt trên AWS Frontend + Backend sử dụng CDN Behavior Tổng quan Workshop này hướng dẫn triển khai một ứng dụng web hiện đại theo kiến trúc tách biệt (Decoupled Architecture) trên AWS.\nHệ thống bao gồm Frontend (React SPA lưu trữ trên S3 và phân phối qua CloudFront) và Backend (Spring Boot container hóa chạy trên ECS Fargate sau Application Load Balancer, sử dụng MySQL trên Amazon RDS).\nToàn bộ traffic được điều hướng qua CloudFront Behavior cho cả frontend và backend, không yêu cầu cài đặt chứng chỉ SSL riêng cho backend.\nCông nghệ sử dụng Frontend\nReact SPA Lưu trữ trên Amazon S3 Phân phối qua Amazon CloudFront Backend\nJava Spring Boot API Container hóa bằng Docker Chạy trên ECS Fargate Sau Application Load Balancer Auto Scaling dựa trên CPU/Memory Cơ sở dữ liệu\nAmazon RDS (MySQL) Công cụ hạ tầng\nAWS CLI, IAM CloudWatch để giám sát và ghi log Các module Set up môi trường AWS CLI \u0026amp; IAM\nTạo IAM user với quyền cần thiết Cấu hình AWS CLI để đăng nhập vào tài khoản AWS Triển khai Backend với ECS Fargate\nTạo Amazon RDS MySQL Build Docker image backend và push lên ECR Khai báo ECS Task Definition Tạo ECS Cluster và Service (kèm ALB, Target Group, Auto Scaling) Triển khai Frontend với S3 và CloudFront\nTạo \u0026amp; cấu hình S3 bucket để lưu trữ file build của dự án Build dự án React (production) và upload build lên S3 Tạo CloudFront Distribution Khởi tạo Origin cho: Origin 1: Frontend (S3 Bucket) Origin 2: Backend (Application Load Balancer) Cấu hình Behavior của CloudFront\nBehavior cho từng origin: FE: /, /static/*, /*.js, /*.css → S3 origin BE: /api/* → ALB origin Cấu hình CORS policy: Cho phép domain frontend truy cập API backend Kiến trúc hệ thống Nội dung chính 1. Set up môi trường AWS CLI \u0026amp; IAM 2. Triển khai Backend với ECS Fargate 3. Triển khai Frontend với S3 và CloudFront 4. Cấu hình Behavior của CloudFront "
 },
 {
-	"uri": "//:1313/vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/",
 	"title": "Build &amp; Upload Frontend App to S3",
 	"tags": [],
 	"description": "",
 	"content": " Cấu hình API endpoint sử dụng /api\nTrong file cấu hình API client (ví dụ: src/services/apiClient.ts), đặt BASE_URL thành /api: const BASE_URL = \u0026#34;/api\u0026#34;; Lý do:\nKhi triển khai với CloudFront Behaviors, frontend và backend sẽ dùng chung một domain CDN.\nCloudFront sẽ định tuyến như sau:\nCác request bắt đầu bằng /api → chuyển tiếp đến backend (ECS/ALB). Các request khác → trả về file tĩnh từ S3. Cách này giúp frontend gọi backend mà không cần domain riêng, đồng thời tránh lỗi CORS.\nBuild ứng dụng frontend\nMở terminal và chạy: npm run build Hoàn tất build\nSau khi build, thư mục build sẽ chứa toàn bộ file tĩnh sẵn sàng cho môi trường production. Upload build lên S3\nSử dụng AWS CLI để đồng bộ thư mục build với bucket S3: aws s3 sync ./build s3://your-bucket-name --delete Tham số --delete giúp xóa các file cũ trong bucket không còn trong bản build mới. Upload hoàn tất\nTất cả file tĩnh của ứng dụng đã được lưu trữ trên S3 bucket. "
 },
 {
-	"uri": "//:1313/vi/4-configure-cloudfront-behavior/2-set-default-root-object/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/2-set-default-root-object/",
 	"title": "Cấu hình Default Root Object &amp; Kiểm tra",
 	"tags": [],
 	"description": "",
 	"content": " Vào tab General\nChọn Edit. Trường Default root object: nhập index.html. Giữ nguyên các thiết lập khác. Nhấn Save changes. Xác nhận cập nhật thành công\nMàn hình hiển thị thông báo màu xanh Successfully updated distribution settings. Default root object đã được set thành index.html. Kiểm tra truy cập Frontend\nMở Distribution domain name của CloudFront. Giao diện web FE được hiển thị. Kiểm tra các trang khác\nTruy cập các trang FE khác (ví dụ: /lesson/readings) để đảm bảo SPA load đúng. "
 },
 {
-	"uri": "//:1313/vi/1-setup-aws-cli-iam/2-create-access-keys/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/2-create-access-keys/",
 	"title": "Tạo Access Key cho IAM User",
 	"tags": [],
 	"description": "",
 	"content": "Tạo Access Key cho IAM User Thực hiện các bước sau để tạo Access Key cho IAM User đã tạo ở bước trước.\n1. Mở trang IAM Users Truy cập IAM dashboard. Trong menu bên trái, chọn Users. Chọn user vừa tạo (ví dụ: dev-h2t). 2. Tạo Access Key Trong trang chi tiết user, chọn tab Security credentials. Ở mục Access keys, bấm Create access key. 3. Chọn loại Access Key Chọn Command Line Interface (CLI). Tích vào ô xác nhận: I understand the above recommendation… Bấm Next. 4. Tạo và lưu Access Key Bấm Create access key. Sao chép Access key và Secret access key vào file .csv hoặc lưu ở nơi an toàn. Lưu ý: Sau khi đóng cửa sổ, bạn sẽ không thể xem lại Secret access key. "
 },
 {
-	"uri": "//:1313/vi/2-deploy-backend-ecs-fargate/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/",
 	"title": "Triển khai Backend với ECS Fargate",
 	"tags": [],
 	"description": "",
 	"content": "Để triển khai backend bằng ECS Fargate, hãy thực hiện theo các hướng dẫn từng bước sau:\nCấp phát Amazon RDS (MySQL) Tạo ECR repository và đẩy Docker image Tạo ECS Task Definition cho container backend Tạo ECS Cluster Tạo ECS Fargate Service (kèm ALB, Target Group, Auto Scaling) "
 },
 {
-	"uri": "//:1313/vi/2-deploy-backend-ecs-fargate/3-create-task-definition/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/3-create-task-definition/",
 	"title": "Tạo ECS Task Definition cho Backend Container",
 	"tags": [],
 	"description": "",
 	"content": " Mở dịch vụ Amazon ECS\nTruy cập Amazon ECS Console. Ở trang chính, nhấn Get started để bắt đầu triển khai ứng dụng container. Mở trang Task Definitions\nTrong menu bên trái, chọn Task definitions. Nhấn Create new task definition để tạo mới. Cấu hình Task Definition\nTask definition family: h2t-backend-task. Launch type: Chọn AWS Fargate. Operating system/Architecture: Linux/X86_64. Network mode: awsvpc. Cấu hình tài nguyên và quyền\nCPU: 1 vCPU. Memory: 3 GB. Task role: Để trống. Task execution role: Chọn Create new role. Cấu hình Container\nName: h2t-backend. Image URI: 740994884477.dkr.ecr.ap-southeast-2.amazonaws.com/h2t/backend:latest Container port: 8080. Protocol: TCP. App protocol: HTTP. Cấu hình lưu trữ \u0026amp; giám sát (tùy chọn)\nVolumes: Thêm volume nếu cần. Monitoring: Có thể bật AWS Distro for OpenTelemetry. Tags: Thêm tag để quản lý. Nhấn Create để hoàn tất. Xác nhận tạo thành công\nThông báo màu xanh: Task definition successfully created. Task h2t-backend-task:1 đã được tạo. ARN: arn:aws:ecs:ap-southeast-2:740994884477:task-definition/h2t-backend-task:1 Status: ACTIVE. Launch type: Fargate. Network mode: awsvpc. "
 },
 {
-	"uri": "//:1313/vi/1-setup-aws-cli-iam/3-configure-aws-cli/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/3-configure-aws-cli/",
 	"title": "Cấu hình AWS CLI trên máy của bạn",
 	"tags": [],
 	"description": "",
 	"content": "Cấu hình AWS CLI trên máy của bạn Sau khi tạo access keys cho IAM user, bạn cần cấu hình AWS CLI trên máy local để xác thực và tương tác với các dịch vụ AWS.\n1. Cài đặt AWS CLI (nếu chưa có) Tải và cài đặt AWS CLI từ hướng dẫn cài đặt chính thức. Kiểm tra cài đặt bằng cách chạy aws --version trong terminal. 2. Mở Terminal và chạy AWS Configure Mở Terminal (macOS/Linux) hoặc Command Prompt (Windows). Chạy lệnh sau: aws configure 3. Nhập thông tin xác thực AWS AWS Access Key ID: Nhập Access Key ID từ bước trước. AWS Secret Access Key: Nhập Secret Access Key đã lưu. Default region name: Nhập region ưa thích (ví dụ: ap-southeast-2). Default output format: Nhập json (khuyến nghị). 4. Xác minh cấu hình AWS CLI Kiểm tra cấu hình bằng cách chạy: aws sts get-caller-identity Bạn sẽ thấy kết quả hiển thị UserID, Account và ARN. Điều này xác nhận AWS CLI đã được cấu hình và xác thực thành công. "
 },
 {
-	"uri": "//:1313/vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/",
 	"title": "Tạo CloudFront Distribution &amp; Cấu hình Origins",
 	"tags": [],
 	"description": "",
 	"content": "Tạo CloudFront Distribution \u0026amp; Cấu hình Origins 1) Mở CloudFront Vào Amazon CloudFront trong AWS Console. Nhấn Create a CloudFront distribution. 2) Khởi tạo phân phối Nhập Distribution name: H2T. Chọn Single website or app. (Không cấu hình custom domain ở bước này.) Nhấn Next. 3) Chọn S3 làm Frontend Origin Origin type: chọn Amazon S3. S3 origin: chọn bucket FE của bạn. Origin path: để trống. 4) Cho phép CloudFront truy cập S3 \u0026amp; dùng cấu hình mặc định Tick Allow private S3 bucket access to CloudFront. Origin settings: chọn Use recommended origin settings. Nhấn Next. 5) Bỏ WAF Chọn Do not enable security protections. Nhấn Next. 6) Review \u0026amp; tạo phân phối Kiểm tra phần Origin và Cache settings. Nhấn Create distribution. 7) Mở tab Origins của phân phối vừa tạo Vào Distributions → Origins. Nhấn Create origin. 8) Thêm Backend Origin (ALB) – dùng HTTP Origin domain: dán ALB DNS. Protocol: chọn HTTP only. HTTP port: 80. Origin path: để trống. Name: đặt tên (ví dụ: backend-alb). 9) Giữ HTTP – Không cấu hình TLS Không chọn HTTPS, giữ nguyên HTTP. Origin path: để trống. Enable Origin Shield: để No. 10) Hoàn tất phần Origins Xác nhận danh sách có 2 origins: S3 (frontend). ALB HTTP (backend). Tiếp theo sẽ cấu hình Behaviors: /api/* → ALB (backend). Mặc định → S3 (frontend). "
 },
 {
-	"uri": "//:1313/vi/3-deploy-frontend-s3-cloudfront/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/",
 	"title": "Triển khai Frontend với S3 và CloudFront",
 	"tags": [],
 	"description": "",
 	"content": "Để triển khai ứng dụng frontend (React SPA) sử dụng Amazon S3 và Amazon CloudFront, hãy thực hiện theo các bước sau:\nTạo \u0026amp; cấu hình S3 Bucket để hosting Build \u0026amp; upload ứng dụng frontend lên S3 Tạo CloudFront Distribution \u0026amp; thiết lập Origins "
 },
 {
-	"uri": "//:1313/vi/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/",
 	"title": "Tạo ECS Cluster cho Backend Container",
 	"tags": [],
 	"description": "",
 	"content": "1. Mở dịch vụ Amazon ECS Truy cập bảng điều khiển Amazon ECS. Trong menu bên trái, chọn Clusters. Nhấn Create cluster để bắt đầu tạo một cluster mới. 2. Cấu hình thông tin cơ bản của cluster Tên cluster: h2t-backend-cluster. Tên phải dài từ 1–255 ký tự; ký tự hợp lệ gồm: a–z, A–Z, 0–9, dấu gạch ngang (-), dấu gạch dưới (_). (Tùy chọn) Mở rộng Service Connect defaults để cấu hình giao tiếp giữa các service. 3. Chọn cấu hình hạ tầng Hạ tầng: Mặc định là AWS Fargate (serverless) với hai capacity provider Fargate và Fargate Spot. AWS Fargate: Mô hình trả phí theo mức sử dụng, không cần quản lý hạ tầng. Amazon EC2 instances: Tùy chọn, dành cho workload chạy liên tục. External instances (ECS Anywhere): Tùy chọn, có thể đăng ký sau. 4. Cấu hình giám sát và các tùy chọn khác Giám sát (Monitoring): Container Insights (enhanced): Khuyến nghị, cung cấp số liệu hiệu suất chi tiết. Container Insights: Cung cấp số liệu tổng hợp cơ bản. Turned off: Chỉ dùng số liệu mặc định từ CloudWatch. Mã hóa (Encryption): Tùy chọn, chọn KMS key để mã hóa dữ liệu. Thẻ (Tags): Thêm thẻ để tổ chức tài nguyên. Nhấn Create để hoàn tất. 5. Xác minh tạo cluster thành công Thông báo thành công: Cluster h2t-backend-cluster has been created successfully. Nhấn View cluster để xem chi tiết: Services: 0 Tasks: 0 Container instances: 0 (sử dụng Fargate) Giám sát: Đã bật Container Insights 6. Tóm tắt ECS cluster đã được tạo với cấu hình Fargate serverless. Đã bật Container Insights để giám sát. Sẵn sàng triển khai ECS services và chạy task bằng các task definition đã tạo. "
 },
 {
-	"uri": "//:1313/vi/4-configure-cloudfront-behavior/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/",
 	"title": "Cấu hình CloudFront Behavior",
 	"tags": [],
 	"description": "",
 	"content": "Để cấu hình CloudFront Behaviors nhằm định tuyến request giữa Frontend (S3) và Backend (ALB), thực hiện theo các bước sau:\nTạo Behavior cho backend Cấu hình Default Root Object \u0026amp; Kiểm tra "
 },
 {
-	"uri": "//:1313/vi/2-deploy-backend-ecs-fargate/5-create-fargate-service/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/5-create-fargate-service/",
 	"title": "Create ECS Fargate Service (with ALB, Target Group, Auto Scaling)",
 	"tags": [],
 	"description": "",
 	"content": " Access Service Creation\nVào ECS cluster h2t-backend-cluster trong AWS Management Console. Chọn tab Services, thấy \u0026ldquo;Services (0)\u0026rdquo; → chưa có service nào. Click Create để tạo service mới. Service giúp duy trì số lượng task mong muốn. Configure Service Details\nTask definition family: Chọn h2t-backend-task. Task definition revision: Chọn Latest hoặc revision cụ thể. Service name: h2t-backend-task-service. Service name phải unique trong cluster. Configure Compute Configuration (Advanced)\nMở Compute configuration (advanced). Compute options: Chọn Capacity provider strategy. Capacity provider: FARGATE. Base: 0, Weight: 1. Platform version: LATEST. Configure Deployment Settings\nScheduling strategy: Replica. Desired tasks: 1. Bật Availability Zone rebalancing. Health check grace period: 0 giây. Bật Amazon ECS deployment circuit breaker + Rollback on failures. Configure Networking\nVPC: vpc-024c455ec8b36b307. Subnets: subnet-04c44f964ca628aab (ap-southeast-2b) subnet-07a217da887113ba (ap-southeast-2a) subnet-03b1929fb918c9e69 (ap-southeast-2c) Security group: sg-03aedb5f21ba82193 (h2t-backend-security). Public IP: Turned on. Configure Load Balancing\nBật Use load balancing. Load balancer type: Application Load Balancer. Container: h2t-backend 8080:8080. Load balancer name: h2t-backend-lb. Listener: Port 80 (HTTP). Configure Target Group\nTarget group name: h2t-backend-target-group. Protocol: HTTP, Port: 8080. Deregistration delay: 300 giây. Health check path: /. Configure Service Auto Scaling\nBật Service auto scaling. Min tasks: 1, Max tasks: 3. Scaling policy type: Target tracking. Policy name: cpu-tracking. Metric: ECSServiceAverageCPUUtilization. Target value: 70%. Cooldown: 300 giây cho scale-in và scale-out. Review and Create Service\nXem lại toàn bộ cấu hình. Click Create để triển khai service. Verify Service Creation\nSau khi tạo thành công → quay lại cluster overview. Services: 1 Active service, Tasks: 1 Running. Service name: h2t-backend-task-service, Status: Active. "
 },
 {
-	"uri": "//:1313/vi/categories/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//:1313/vi/tags/",
+	"uri": "http://localhost:1313/CapLeHuuTan_WorkShop/vi/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",

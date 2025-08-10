@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Create ECS Fargate Service (with ALB, Target Group, Auto Scaling) on Create a new AWS account.</title>
-    <link>//:1313/2-deploy-backend-ecs-fargate/5-create-fargate-service/</link>
+    <link>http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/5-create-fargate-service/</link>
     <description>Recent content in Create ECS Fargate Service (with ALB, Target Group, Auto Scaling) on Create a new AWS account.</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="//:1313/2-deploy-backend-ecs-fargate/5-create-fargate-service/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/CapLeHuuTan_WorkShop/2-deploy-backend-ecs-fargate/5-create-fargate-service/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Deploy Frontend with S3 and CloudFront on Create a new AWS account.</title>
-    <link>//:1313/3-deploy-frontend-s3-cloudfront/</link>
+    <link>http://localhost:1313/CapLeHuuTan_WorkShop/3-deploy-frontend-s3-cloudfront/</link>
     <description>Recent content in Deploy Frontend with S3 and CloudFront on Create a new AWS account.</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="//:1313/3-deploy-frontend-s3-cloudfront/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/CapLeHuuTan_WorkShop/3-deploy-frontend-s3-cloudfront/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
