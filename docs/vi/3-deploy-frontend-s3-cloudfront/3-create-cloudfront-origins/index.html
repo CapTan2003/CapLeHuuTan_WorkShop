@@ -7,26 +7,26 @@
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
-    <link rel="icon" href="/CapLeHuuTan_WorkShop/images/favicon.png" type="image/png">
+    <link rel="icon" href="../../../images/favicon.png" type="image/png">
 
     <title>Tạo CloudFront Distribution &amp; Cấu hình Origins :: Tạo mới tài khoản AWS</title>
 
     
-    <link href="/CapLeHuuTan_WorkShop/css/nucleus.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/fontawesome-all.min.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/hybrid.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/featherlight.min.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/perfect-scrollbar.min.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/auto-complete.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/atom-one-dark-reasonable.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/theme.css?1754841429" rel="stylesheet">
-    <link href="/CapLeHuuTan_WorkShop/css/hugo-theme.css?1754841429" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1754841830" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1754841830" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1754841830" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1754841830" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1754841830" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1754841830" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1754841830" rel="stylesheet">
+    <link href="../../../css/theme.css?1754841830" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1754841830" rel="stylesheet">
     
-    <link href="/CapLeHuuTan_WorkShop/css/theme-workshop.css?1754841429" rel="stylesheet">
+    <link href="../../../css/theme-workshop.css?1754841830" rel="stylesheet">
     
     
 
-    <script src="/CapLeHuuTan_WorkShop/js/jquery-3.3.1.min.js?1754841429"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1754841830"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,14 +36,14 @@
     </style>
     
   </head>
-  <body class="" data-url="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/">
+  <body class="" data-url="../../../vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
 
   <div id="header-wrapper">
     <div id="header">
-      <a id="logo" href="/">
+      <a id="logo" href="../../../">
 
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg>
 
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/lunr.min.js?1754841429"></script>
-<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/auto-complete.js?1754841429"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1754841830"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1754841830"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/localhost:1313\/CapLeHuuTan_WorkShop\/\/vi";
     
 </script>
-<script type="text/javascript" src="/CapLeHuuTan_WorkShop/js/search.js?1754841429"></script>
+<script type="text/javascript" src="../../../js/search.js?1754841830"></script>
 
     
   </div>
@@ -82,12 +82,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/" title="Cài đặt AWS CLI &amp; IAM" class="dd-item 
+    <li data-nav-id="/vi/1-setup-aws-cli-iam/" title="Cài đặt AWS CLI &amp; IAM" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/">
+      <a href="../../../vi/1-setup-aws-cli-iam/">
            <b> 1. </b> Cài đặt AWS CLI &amp; IAM
           
             <i class="fas fa-check read-icon"></i>
@@ -113,12 +113,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/1-create-iam-user/" title="Tạo IAM User cho S3 &amp; ECR" class="dd-item 
+    <li data-nav-id="/vi/1-setup-aws-cli-iam/1-create-iam-user/" title="Tạo IAM User cho S3 &amp; ECR" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/1-create-iam-user/">
+      <a href="../../../vi/1-setup-aws-cli-iam/1-create-iam-user/">
            <b> 1.1 </b> Tạo IAM User cho S3 &amp; ECR
           
             <i class="fas fa-check read-icon"></i>
@@ -141,12 +141,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/2-create-access-keys/" title="Tạo Access Key cho IAM User" class="dd-item 
+    <li data-nav-id="/vi/1-setup-aws-cli-iam/2-create-access-keys/" title="Tạo Access Key cho IAM User" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/2-create-access-keys/">
+      <a href="../../../vi/1-setup-aws-cli-iam/2-create-access-keys/">
            <b> 1.2 </b> Tạo Access Key cho IAM User
           
             <i class="fas fa-check read-icon"></i>
@@ -169,12 +169,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/3-configure-aws-cli/" title="Cấu hình AWS CLI trên máy của bạn" class="dd-item 
+    <li data-nav-id="/vi/1-setup-aws-cli-iam/3-configure-aws-cli/" title="Cấu hình AWS CLI trên máy của bạn" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/1-setup-aws-cli-iam/3-configure-aws-cli/">
+      <a href="../../../vi/1-setup-aws-cli-iam/3-configure-aws-cli/">
            <b> 1.3 </b> Cấu hình AWS CLI trên máy của bạn
           
             <i class="fas fa-check read-icon"></i>
@@ -204,12 +204,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/" title="Triển khai Backend với ECS Fargate" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-backend-ecs-fargate/" title="Triển khai Backend với ECS Fargate" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/">
+      <a href="../../../vi/2-deploy-backend-ecs-fargate/">
            <b> 2. </b> Triển khai Backend với ECS Fargate
           
             <i class="fas fa-check read-icon"></i>
@@ -235,12 +235,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/" title="Tạo ECR Repository và Push Docker Image" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/" title="Tạo ECR Repository và Push Docker Image" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/">
+      <a href="../../../vi/2-deploy-backend-ecs-fargate/2-create-ecr-push-image/">
            <b> 2.2 </b> Tạo ECR Repository và Push Docker Image
           
             <i class="fas fa-check read-icon"></i>
@@ -263,12 +263,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/1-provision-rds-database/" title="Tạo Cơ Sở Dữ Liệu RDS (MySQL)" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-backend-ecs-fargate/1-provision-rds-database/" title="Tạo Cơ Sở Dữ Liệu RDS (MySQL)" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/1-provision-rds-database/">
+      <a href="../../../vi/2-deploy-backend-ecs-fargate/1-provision-rds-database/">
            <b> 2.1 </b> Tạo Cơ Sở Dữ Liệu RDS (MySQL)
           
             <i class="fas fa-check read-icon"></i>
@@ -291,12 +291,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/3-create-task-definition/" title="Tạo ECS Task Definition cho Backend Container" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-backend-ecs-fargate/3-create-task-definition/" title="Tạo ECS Task Definition cho Backend Container" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/3-create-task-definition/">
+      <a href="../../../vi/2-deploy-backend-ecs-fargate/3-create-task-definition/">
            <b> 2.3 </b> Tạo ECS Task Definition cho Backend Container
           
             <i class="fas fa-check read-icon"></i>
@@ -319,12 +319,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/" title="Tạo ECS Cluster cho Backend Container" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/" title="Tạo ECS Cluster cho Backend Container" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/">
+      <a href="../../../vi/2-deploy-backend-ecs-fargate/4-create-ecs-cluster/">
            <b> 2.4 </b> Tạo ECS Cluster cho Backend Container
           
             <i class="fas fa-check read-icon"></i>
@@ -347,12 +347,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/5-create-fargate-service/" title="Create ECS Fargate Service (with ALB, Target Group, Auto Scaling)" class="dd-item 
+    <li data-nav-id="/vi/2-deploy-backend-ecs-fargate/5-create-fargate-service/" title="Create ECS Fargate Service (with ALB, Target Group, Auto Scaling)" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/2-deploy-backend-ecs-fargate/5-create-fargate-service/">
+      <a href="../../../vi/2-deploy-backend-ecs-fargate/5-create-fargate-service/">
            <b> 2.5 </b> Create ECS Fargate Service (with ALB, Target Group, Auto Scaling)
           
             <i class="fas fa-check read-icon"></i>
@@ -382,12 +382,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/" title="Triển khai Frontend với S3 và CloudFront" class="dd-item 
+    <li data-nav-id="/vi/3-deploy-frontend-s3-cloudfront/" title="Triển khai Frontend với S3 và CloudFront" class="dd-item 
         parent
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/">
+      <a href="../../../vi/3-deploy-frontend-s3-cloudfront/">
            <b> 3. </b> Triển khai Frontend với S3 và CloudFront
           
             <i class="fas fa-check read-icon"></i>
@@ -413,12 +413,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/" title="Tạo &amp; Cấu hình S3 Bucket để Hosting" class="dd-item 
+    <li data-nav-id="/vi/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/" title="Tạo &amp; Cấu hình S3 Bucket để Hosting" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/">
+      <a href="../../../vi/3-deploy-frontend-s3-cloudfront/1-create-s3-hosting/">
            <b> 3.1 </b> Tạo &amp; Cấu hình S3 Bucket để Hosting
           
             <i class="fas fa-check read-icon"></i>
@@ -441,12 +441,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/" title="Build &amp; Upload Frontend App to S3" class="dd-item 
+    <li data-nav-id="/vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/" title="Build &amp; Upload Frontend App to S3" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/">
+      <a href="../../../vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/">
            <b> 3.2 </b> Build &amp; Upload Frontend App to S3
           
             <i class="fas fa-check read-icon"></i>
@@ -469,12 +469,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/" title="Tạo CloudFront Distribution &amp; Cấu hình Origins" class="dd-item 
+    <li data-nav-id="/vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/" title="Tạo CloudFront Distribution &amp; Cấu hình Origins" class="dd-item 
         
         active
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/">
+      <a href="../../../vi/3-deploy-frontend-s3-cloudfront/3-create-cloudfront-origins/">
            <b> 3. </b> Tạo CloudFront Distribution &amp; Cấu hình Origins
           
             <i class="fas fa-check read-icon"></i>
@@ -504,12 +504,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/" title="Cấu hình CloudFront Behavior" class="dd-item 
+    <li data-nav-id="/vi/4-configure-cloudfront-behavior/" title="Cấu hình CloudFront Behavior" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/">
+      <a href="../../../vi/4-configure-cloudfront-behavior/">
            <b> 4. </b> Cấu hình CloudFront Behavior
           
             <i class="fas fa-check read-icon"></i>
@@ -535,12 +535,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/1-create-api-behavior/" title="Tạo Behavior cho backend" class="dd-item 
+    <li data-nav-id="/vi/4-configure-cloudfront-behavior/1-create-api-behavior/" title="Tạo Behavior cho backend" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/1-create-api-behavior/">
+      <a href="../../../vi/4-configure-cloudfront-behavior/1-create-api-behavior/">
            <b> 4.1 </b> Tạo Behavior cho backend
           
             <i class="fas fa-check read-icon"></i>
@@ -563,12 +563,12 @@
  
   
     
-    <li data-nav-id="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/2-set-default-root-object/" title="Cấu hình Default Root Object &amp; Kiểm tra" class="dd-item 
+    <li data-nav-id="/vi/4-configure-cloudfront-behavior/2-set-default-root-object/" title="Cấu hình Default Root Object &amp; Kiểm tra" class="dd-item 
         
         
         
         ">
-      <a href="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/2-set-default-root-object/">
+      <a href="../../../vi/4-configure-cloudfront-behavior/2-set-default-root-object/">
            <b> 4.2 </b> Cấu hình Default Root Object &amp; Kiểm tra
           
             <i class="fas fa-check read-icon"></i>
@@ -733,7 +733,7 @@
             
           
           
-            <a href='/CapLeHuuTan_WorkShop/vi/'>Trang chủ</a> > <a href='/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/'>Triển khai Frontend với S3 và CloudFront</a> > Tạo CloudFront Distribution & Cấu hình Origins
+            <a href='../../../vi/'>Trang chủ</a> > <a href='../../../vi/3-deploy-frontend-s3-cloudfront/'>Triển khai Frontend với S3 và CloudFront</a> > Tạo CloudFront Distribution & Cấu hình Origins
           
         
           
@@ -794,7 +794,7 @@
 <li>Vào <strong>Amazon CloudFront</strong> trong AWS Console.</li>
 <li>Nhấn <strong>Create a CloudFront distribution</strong>.</li>
 </ul>
-<p><img src="/images/03/3/1.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/1.png" alt="image.png"></p>
 <hr>
 <h3 id="2-khởi-tạo-phân-phối"><strong>2) Khởi tạo phân phối</strong></h3>
 <ul>
@@ -803,7 +803,7 @@
 <li>(Không cấu hình custom domain ở bước này.)</li>
 <li>Nhấn <strong>Next</strong>.</li>
 </ul>
-<p><img src="/images/03/3/2.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/2.png" alt="image.png"></p>
 <hr>
 <h3 id="3-chọn-s3-làm-frontend-origin"><strong>3) Chọn S3 làm Frontend Origin</strong></h3>
 <ul>
@@ -811,7 +811,7 @@
 <li><strong>S3 origin</strong>: chọn bucket FE của bạn.</li>
 <li><strong>Origin path</strong>: để trống.</li>
 </ul>
-<p><img src="/images/03/3/3.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/3.png" alt="image.png"></p>
 <hr>
 <h3 id="4-cho-phép-cloudfront-truy-cập-s3--dùng-cấu-hình-mặc-định"><strong>4) Cho phép CloudFront truy cập S3 &amp; dùng cấu hình mặc định</strong></h3>
 <ul>
@@ -819,28 +819,28 @@
 <li><strong>Origin settings</strong>: chọn <strong>Use recommended origin settings</strong>.</li>
 <li>Nhấn <strong>Next</strong>.</li>
 </ul>
-<p><img src="/images/03/3/4.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/4.png" alt="image.png"></p>
 <hr>
 <h3 id="5-bỏ-waf"><strong>5) Bỏ WAF</strong></h3>
 <ul>
 <li>Chọn <strong>Do not enable security protections</strong>.</li>
 <li>Nhấn <strong>Next</strong>.</li>
 </ul>
-<p><img src="/images/03/3/5.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/5.png" alt="image.png"></p>
 <hr>
 <h3 id="6-review--tạo-phân-phối"><strong>6) Review &amp; tạo phân phối</strong></h3>
 <ul>
 <li>Kiểm tra phần <strong>Origin</strong> và <strong>Cache settings</strong>.</li>
 <li>Nhấn <strong>Create distribution</strong>.</li>
 </ul>
-<p><img src="/images/03/3/6.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/6.png" alt="image.png"></p>
 <hr>
 <h3 id="7-mở-tab-origins-của-phân-phối-vừa-tạo"><strong>7) Mở tab Origins của phân phối vừa tạo</strong></h3>
 <ul>
 <li>Vào <strong>Distributions → Origins</strong>.</li>
 <li>Nhấn <strong>Create origin</strong>.</li>
 </ul>
-<p><img src="/images/03/3/7.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/7.png" alt="image.png"></p>
 <hr>
 <h3 id="8-thêm-backend-origin-alb--dùng-http"><strong>8) Thêm Backend Origin (ALB) – dùng HTTP</strong></h3>
 <ul>
@@ -850,7 +850,7 @@
 <li><strong>Origin path</strong>: để trống.</li>
 <li><strong>Name</strong>: đặt tên (ví dụ: <code>backend-alb</code>).</li>
 </ul>
-<p><img src="/images/03/3/8.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/8.png" alt="image.png"></p>
 <hr>
 <h3 id="9-giữ-http--không-cấu-hình-tls"><strong>9) Giữ HTTP – Không cấu hình TLS</strong></h3>
 <ul>
@@ -858,7 +858,7 @@
 <li><strong>Origin path</strong>: để trống.</li>
 <li><strong>Enable Origin Shield</strong>: để <strong>No</strong>.</li>
 </ul>
-<p><img src="/images/03/3/9.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/9.png" alt="image.png"></p>
 <hr>
 <h3 id="10-hoàn-tất-phần-origins"><strong>10) Hoàn tất phần Origins</strong></h3>
 <ul>
@@ -875,7 +875,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/images/03/3/10.png" alt="image.png"></p>
+<p><img src="../../../images/03/3/10.png" alt="image.png"></p>
 
 
 
@@ -1211,10 +1211,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/CapLeHuuTan_WorkShop/vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/" title="Build &amp; Upload Frontend App to S3"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../../../vi/3-deploy-frontend-s3-cloudfront/2-build-upload-frontend/" title="Build &amp; Upload Frontend App to S3"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/CapLeHuuTan_WorkShop/vi/4-configure-cloudfront-behavior/" title="Cấu hình CloudFront Behavior" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../../vi/4-configure-cloudfront-behavior/" title="Cấu hình CloudFront Behavior" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1224,19 +1224,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/CapLeHuuTan_WorkShop/js/clipboard.min.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.min.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/perfect-scrollbar.jquery.min.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/jquery.sticky.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/featherlight.min.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/highlight.pack.js?1754841429"></script>
+    <script src="../../../js/clipboard.min.js?1754841830"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1754841830"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1754841830"></script>
+    <script src="../../../js/jquery.sticky.js?1754841830"></script>
+    <script src="../../../js/featherlight.min.js?1754841830"></script>
+    <script src="../../../js/highlight.pack.js?1754841830"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/CapLeHuuTan_WorkShop/js/modernizr.custom-3.6.0.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/learn.js?1754841429"></script>
-    <script src="/CapLeHuuTan_WorkShop/js/hugo-learn.js?1754841429"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1754841830"></script>
+    <script src="../../../js/learn.js?1754841830"></script>
+    <script src="../../../js/hugo-learn.js?1754841830"></script>
 
-    <link href="/CapLeHuuTan_WorkShop/mermaid/mermaid.css?1754841429" rel="stylesheet" />
-    <script src="/CapLeHuuTan_WorkShop/mermaid/mermaid.js?1754841429"></script>
+    <link href="../../../mermaid/mermaid.css?1754841830" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1754841830"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -1,6 +1,8 @@
 theme = "hugo-theme-learn"
 publishDir = "docs"
 baseURL = "https://captan2003.github.io/CapLeHuuTan_WorkShop/"
+relativeURLs = true
+canonifyURLs = true
 staticDir = ["static"]
 
 [module]
